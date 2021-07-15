@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<!--указываем язык страницы-->
+<html lang="ru-RU">
+<head>
+<!--    указываем кодировку-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="d0pxSGEtY0QGHgIKKH4pKx4CCQIGZlQcBQISGlkbBj4xCBMpKnwlBw==">
+<!--    название страницы-->
+    <title>Телефонная книга</title>
+<!--    подключаемые стили-->
+    <link href="./test_list_files/jquery-ui.css" rel="stylesheet">
+    <link href="./test_list_files/bootstrap.css" rel="stylesheet">
+    <link href="./test_list_files/parts.css" rel="stylesheet">
+    <link href="./test_list_files/cards.css" rel="stylesheet">
+    <link href="./test_list_files/site.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+<!--    блок верхняя навигационная панель (навбар)-->
+    <nav id="top-navbar" class="navbar-inverse navbar" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="https://phonebook-app.com/go/demo-ru/www/index.php">Телефонная книга</a>
+            </div>
+            <div id="top-navbar-collapse" class="collapse navbar-collapse">
+                <ul id="w7" class="navbar-nav hidden-xs nav">
+                    <li><a id="navpin-btn" class="glyphicon glyphicon-pushpin"
+                           href="https://phonebook-app.com/go/demo-ru/www/#" title="Закрепить панель"></a></li>
+                </ul>
+                <ul class="col-sm-5 col-md-4 navbar-nav nav">
+                    <li class="navbar-form navbar-left" role="search">
+                        <input id="searchbox" type="text" class="form-control"
+                               placeholder="примеры: сара коннор, официантка, 2039">
+                    </li>
+                </ul>
+                <ul id="w8" class="navbar-nav hidden-sm hidden-xs nav">
+                    <li><a id="search-btn" href="https://phonebook-app.com/go/demo-ru/www/#"><i
+                            class="glyphicon glyphicon-search"></i> Поиск</a></li>
+                    <li><a id="reset-btn" href="https://phonebook-app.com/go/demo-ru/www/#"><i
+                            class="glyphicon glyphicon-remove"></i> Сброс</a></li>
+                </ul>
+                <ul id="w9" class="navbar-nav navbar-right nav">
+                    <li><a id="print-btn" class="hidden-xs" href="javascript:clickPrint();" part="1"><i
+                            class="glyphicon glyphicon-print"></i> </a></li>
+                    <li><a href="https://phonebook-app.com/go/demo-ru/www/index.php?r=site%2Flogin">Войти <i
+                            class="glyphicon glyphicon-log-in"></i> </a></li>
+                </ul>
+                <ul class="hidden-xs navbar-nav navbar-right nav">
+                    <li><a><i class="glyphicon glyphicon-cloud"></i> интернет</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!--    блок основной контейнер-->
+    <div id="main-container" class="container-fluid">
+        <div class="row">
+
+            <div id="phonebook" class="tabbable  col-md-12">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-lg-2 tabs-left">
+                        <ul id="dp-tag-list" class="nav nav-tabs">
+                            <li class="active"><a href="https://phonebook-app.com/go/demo-ru/www/#dp-tab-18"
+                                                  data-toggle="tab">Основной</a></li>
+                            <li><a href="https://phonebook-app.com/go/demo-ru/www/#dp-tab-19" data-toggle="tab">Подразделение
+                                1</a></li>
+                            <li><a href="https://phonebook-app.com/go/demo-ru/www/#dp-tab-20" data-toggle="tab">Подразделение
+                                2</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content col-md-10 col-sm-10 col-lg-10">
+                        <div id="dp-tab-18" class=" tab-pane active" part-id="18">
+                            <div class="col-sm-12 entr card " type="1" card-id="836">
+                                <div class="row details">
+                                    <div class="col-sm-auto">
+                                        <div class="logo">
+                                            <img src="./Телефонная книга_files/card836.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h2>
+                                                    <span class="inline"
+                                                          data-id="name">Войсковая часть 2034</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">8 (01714) 300-00-00</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:mail@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">mail@company.ru</span> </small>
+                                        </h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="https://phonebook-app.com/" target="_blank">
+                                                <span class="inline url" data-id="external_url">https://phonebook-app.com</span></a>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline" data-id="comment"></span>
+                                        </small></h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                    <!--        </div>-->
+                                </div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="838">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Руководство</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 300-00-01</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:office@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">office@company.ru</span> </small>
+                                        </h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="834">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Петров Алексей</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">100</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Директор</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:petrov@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">petrov@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment">в отпуске до 12.11</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile">+7 (922) 123 123 11</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype">apetrov</span>
+                                        </div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="835">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Иванов Сергей</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">101</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Заместитель директора</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:ivanov@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">ivanov@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment">на больничном</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile">+7 (911) 000 00 000</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype">ivanovs</span>
+                                        </div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="837">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Крылов Никита</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">115</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Начальник отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:nikita@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">nikita@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile">+7 (912) 000 00 000</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype">nikitak</span>
+                                        </div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="841">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Татьяна Юдина</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">105</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Секретарь</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:mail@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">mail@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile">+ 7 (922)  111 11 11</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype">tanyau</span>
+                                        </div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="839">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Общий отдел</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 300-00-02</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:mail@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">mail@company.ru</span> </small>
+                                        </h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="840">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Лыткин Валерий</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">201</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Менеджер проекта</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:valera@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">valera@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="843">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Федосеев Игорь</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">207</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Инженер</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:igor@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">igor@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile">+7 (900)  333 33 33</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype">igorf</span>
+                                        </div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="844">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Евсеева Людмила</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">217</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Экономист</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:luda@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">luda@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="845">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Власова Валерия</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">218</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Юрист</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:valeria@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">valeria@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype"
+                                                                     data-id="skype">valeriav</span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="846">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Белов Анастасия</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">220</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Бухгалтер</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:nastya@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">nastya@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="849">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Отдел продаж</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 600-00-00</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:sales@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">sales@company.ru</span> </small>
+                                        </h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="850">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Павлов Николай</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">300</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Начальник отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:nik@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">nik@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="842">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Авдеев Анатолий</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">205</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Менеджер по продажам</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:anatole@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">anatole@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile">+ 7 (922) 555 55 55</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype">anatole</span>
+                                        </div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+                        </div>
+                        <div id="dp-tab-19" class=" tab-pane" part-id="19">
+                            <div class="col-sm-12 entr card " type="1" card-id="847">
+                                <div class="row details">
+                                    <div class="col-sm-auto">
+                                        <div class="logo">
+                                            <img src="./Телефонная книга_files/card847.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h2>
+                                                    <span class="inline" data-id="name">Название подразделения вашей организации</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 500-00-00</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:mail@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">mail@company.ru</span> </small>
+                                        </h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="https://www.google.ru/" target="_blank">
+                                                <span class="inline url"
+                                                      data-id="external_url">https://www.google.ru/</span></a> </small>
+                                        </h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline" data-id="comment"></span>
+                                        </small></h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                    <!--        </div>-->
+                                </div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="851">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Отдел проектирования</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 400-00-00</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:project@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">project@company.ru</span>
+                                        </small></h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="853">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Белоусов Александр</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">500</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Начальник отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:alex@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">alex@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="854">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Симонов Андрей</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">510</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Зам начальника отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:and@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">and@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="855">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Некрасов Леонид</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">520</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Инженер</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:leo@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">leo@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="860">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Суханова Дарья</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">530</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Экономист</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:econ@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">econ@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="861">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Лазарева Арина</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">540</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Секретарь</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:office@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">office@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="852">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Отдел продаж</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 400-50-00</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:sales@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">sales@company.ru</span> </small>
+                                        </h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="856">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Устинов Федор</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">600</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Начальник отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:fedor@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">fedor@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="857">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Титов Василий</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">610</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">1С программист</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:1c@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">1c@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="858">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Баранов Игорь</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">620</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Помощник 1С программиста</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:2c@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">2c@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="859">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline"
+                                                                               data-id="name">Шаров Юрий</span></div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">630</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Водитель</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:car@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">car@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+                        </div>
+                        <div id="dp-tab-20" class=" tab-pane" part-id="20">
+                            <div class="col-sm-12 entr card " type="1" card-id="848">
+                                <div class="row details">
+                                    <div class="col-sm-auto">
+                                        <div class="logo">
+                                            <img src="./Телефонная книга_files/card848.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h2>
+                                                    <span class="inline" data-id="name">Название подразделения вашей организации</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 500-50-50</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:office@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">office@company.ru</span> </small>
+                                        </h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="https://ru.wikipedia.org/" target="_blank">
+                                                <span class="inline url" data-id="external_url">https://ru.wikipedia.org/</span></a>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline" data-id="comment"></span>
+                                        </small></h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                    <!--        </div>-->
+                                </div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="862">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Транспортный отдел</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 700-00-10</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:transport@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">transport@company.ru</span>
+                                        </small></h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="865">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Макаров Богдан</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">400</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Начальник отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:cars@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">cars@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="866">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Степанов Виктор</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">410</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Автоэлектрик</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:vic@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">vic@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="871">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Тетерина Маргарита</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">420</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Врач</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:margo@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">margo@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="870">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Никитина Эмма</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">430</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Секретарь</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:cars@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">cars@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+
+                            <div class="card dept col-sm-12 " type="2" card-id="863">
+                                <div class="row details">
+                                    <div class="col-sm-11">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <span class="inline" data-id="name">Техническая служба</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <span class="inline phone-alt"
+                                                  data-id="ph_internal">+7 (495) 200-10-10</span>
+                                        </small></h4></div>
+                                        <div class="col-sm-12"><h4><small>
+                                            <a href="mailto:help@company.ru" target="_top"><i
+                                                    class="glyphicon glyphicon-envelope"></i></a>
+                                            <span class="inline email" data-id="email">help@company.ru</span> </small>
+                                        </h4></div>
+                                    </div>
+                                    <div class="bottom-right row">
+                                        <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                                class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="864">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Тимофеев Данила</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">700</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Начальник отдела</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:help.danila@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">help.danila@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="867">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Данилов Леонид</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">710</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Cистемный администратор</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:sys@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">sys@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="868">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Наумов Роман</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">720</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Помощник системного администтратора</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:minisys@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">minisys@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="869">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline"
+                                                                               data-id="name">Орехов Лев</span></div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">730</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Плотник</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:plot@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">plot@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+
+                            <div class="card prsn col-sm-12 " type="3" card-id="872">
+                                <div class="row entr">
+                                    <div class="col-xs-auto"></div>
+                                </div>
+                                <div class="row brief">
+                                    <div class="col-sm-3" data-id="name"><span class="inline" data-id="name">Тихонова Ольга</span>
+                                    </div>
+                                    <div class="col-sm-1" data-id="ph_internal"><span class="inline phone"
+                                                                                      data-id="ph_internal">740</span>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5 em" data-id="job_title"><span class="inline"
+                                                                                                data-id="job_title">Секретарь</span>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 email" data-id="email">
+                                        <a href="mailto:help@company.ru" target="_top"><i
+                                                class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="inline email" data-id="email">help@company.ru</span></div>
+                                </div>
+
+                                <div class="row details panel-collapse collapse">
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline comment" data-id="comment"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 round">
+                                        <div class="col-sm-12"><span class="inline phone" data-id="ph_mobile"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 col-lg-push-3 col-sm-push-2 round">
+                                        <div class="col-sm-12"><span class="inline skype" data-id="skype"></span></div>
+                                        <div class="col-sm-12"><span class="inline skype-biz" data-id="lync"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-right row">
+                                    <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                                            class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="typoreport-modal" class="fade modal" role="dialog" tabindex="-1">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3>Связаться с менеджером раздела</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="typoreport-form">
+
+                                <form id="w6"
+                                      action="https://phonebook-app.com/go/demo-ru/www/index.php?r=site%2Ftypo-report"
+                                      method="post">
+                                    <input type="hidden" name="_csrf"
+                                           value="d0pxSGEtY0QGHgIKKH4pKx4CCQIGZlQcBQISGlkbBj4xCBMpKnwlBw==">
+                                    <div class="form-group field-typoreportform-text">
+                                        <label class="control-label" for="typoreportform-text">Сообщение</label>
+                                        <textarea id="typoreportform-text" class="form-control"
+                                                  name="TypoReportForm[text]" maxlength="1000" autocomplete="off"
+                                                  placeholder="Введите сообщение для менеджера раздела. Содержание карточки будет добавлено к сообщению автоматически."></textarea>
+
+                                        <div class="help-block"></div>
+                                    </div>
+                                    <input type="hidden" id="typoreportform-partition_id"
+                                           name="TypoReportForm[partition_id]" autocomplete="off"><input type="hidden"
+                                                                                                         id="typoreportform-enterprise_id"
+                                                                                                         name="TypoReportForm[enterprise_id]"
+                                                                                                         autocomplete="off"><input
+                                        type="hidden" id="typoreportform-department_id"
+                                        name="TypoReportForm[department_id]" autocomplete="off"><input type="hidden"
+                                                                                                       id="typoreportform-related_card_id"
+                                                                                                       name="TypoReportForm[related_card_id]"
+                                                                                                       autocomplete="off">
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Отправить</button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--подключаемые ява-скрипты-->
+<script type="text/javascript" async="" src="./test_list_files/analytics.js.download"></script>
+<script async="" src="./test_list_files/tag.js.download"></script>
+<script src="./test_list_files/jquery.js.download"></script>
+<script src="./test_list_files/jquery-ui.js.download"></script>
+<script src="./test_list_files/msg.js.download"></script>
+<script src="./test_list_files/search.js.download"></script>
+<script src="./test_list_files/cards-view.js.download"></script>
+<script src="./test_list_files/cards-edit.js.download"></script>
+<script src="./test_list_files/bootstrap.js.download"></script>
+<script src="./test_list_files/yii.js.download"></script>
+<script src="./test_list_files/yii.validation.js.download"></script>
+<script src="./test_list_files/yii.activeForm.js.download"></script>
+<script type="text/javascript">jQuery(document).ready(function () {
+jQuery('#dp-tag-list').tab();
+jQuery('#w6').yiiActiveForm([{"id":"typoreportform-text","name":"text","container":".field-typoreportform-text","input":"#typoreportform-text","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Значение «Сообщение» должно быть строкой.","skipOnEmpty":1});}}], []);
+jQuery('#typoreport-modal').modal({"show":false});
+});
+</script>    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(50989274, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+
+</script>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/50989274" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./test_list_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165853539-1');
+
+</script>
+
+
+</body>
+</html>

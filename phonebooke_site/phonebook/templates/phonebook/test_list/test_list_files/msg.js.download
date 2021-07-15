@@ -1,0 +1,23 @@
+function tr(text) {
+    var msg={
+        'Delete': 'Удалить',
+        'Int.#': 'Вн. №',
+        'Phone': 'Телефон',
+        'Mobile phone': 'Мобильный телефон',
+        'Email address': 'Адрес электронной почты',
+        'Enterprise email address': 'Корпоративный адрес э-почты',
+        'Common department email address': 'Общая э-почта отдела',
+        'Skype name': 'Скайп',
+        'Lync account id': 'Линк',
+        'Any comments': 'Примечания',
+        'Job title': 'Должность',
+        'Name here': 'ФИО / Название',
+        'Person name': 'Полное имя',
+        'Department name': 'Название отдела',
+        'Enterprise name': 'Название предприятия',
+        'Corporate site address': 'Адрес сайта предприятия'
+    }
+    if(msg[text]===undefined)
+        return text
+    return msg[text]
+}

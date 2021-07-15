@@ -1,0 +1,9 @@
+asgiref<4,>=3.3.2
+pytz
+sqlparse>=0.2.2
+
+[argon2]
+argon2-cffi>=19.1.0
+
+[bcrypt]
+bcrypt

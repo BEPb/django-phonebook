@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>  # указываем переменную шаблона title
+</head>
+<body>
+
+{% for item in phonebook %}
+<div>
+    <p>{{item.title}}</p>
+    <p>{{item.subdivision}}</p>
+    <p>{{item.position}}</p>
+    <p>{{item.surname}}</p>
+    <p>{{item.name}}</p>
+    <p>{{item.second_name}}</p>
+    <p>{{item.oficial_telephone}}</p>
+    <p>{{item.landline_telephone}}</p>
+    <p>{{item.service_fax}}</p>
+    <p>{{item.mobile_telephone}}</p>
+    <p>{{item.create_at|date:"Y-m-d H:i:s"}}</p>  <!-- # указываем дату создания с применением фильтра отображения-->
+    <p>{{item.update_at}}</p>
+    <p>{{item.photo}}</p>
+    <p>{{item.is_published}}</p>
+    <p>{{item.note}}</p>
+    <hr>
+</div>
+
+{% endfor %}
+
+
+
+</body>
+</html>

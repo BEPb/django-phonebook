@@ -1,0 +1,188 @@
+### создаем проект phoneProect в pycharm с виртуальным окружением
+
+pip list  # смотрим установленные пакеты
+
+Package    Version
+---------- -------
+pip        21.1.3
+setuptools 56.0.0
+UNKNOWN    0.0.0
+
+### перед установкой django необходимо установить миниму 3 пакета asgiref, pytz, sqlparse
+pip install d:\import\asgiref-3.4.0-py3-none-any.whl
+pip install d:\import\pytz-2021.1-py2.py3-none-any.whl
+pip install d:\import\sqlparse-0.4.1-py3-none-any.whl
+
+
+pip install d:\import\Django-3.2.5.tar.gz  # установка django  в виртуальное окружение
+
+pip list  # смотрим установленные пакеты
+
+Package    Version
+---------- -------
+asgiref    3.4.0
+Django     3.2.5
+pip        21.1.3
+pytz       2021.1
+setuptools 56.0.0
+sqlparse   0.4.1
+UNKNOWN    0.0.0
+
+
+django-admin  # просмотр доступных команд django
+
+Available subcommands:
+[django]
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations  # Данной командой мы создаем миграцию, изменения в модель (свой контроль версий моделей)
+    migrate  # Данной командой мы применяем миграцию, изменения в модель (свой контроль версий моделей)
+    runserver
+    sendtestemail
+    shell  # запуск интерпретатора питона для заполнения данных в sql
+    showmigrations
+    sqlflush
+    sqlmigrate  # Данной командой мы просматриваем все изменения в таблице sql по конкретной миграции
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+
+# создаем проект phonebooke_site
+django-admin startproject phonebooke_site
+
+
+# переходим в директорию с ссозданым сайтом на django
+cd phonebooke_site
+
+# запускаем сервер  по умолчанию http://127.0.0.1:8000/
+manage.py runserver
+
+или с настройками
+python manage.py runserver 4000
+python manage.py runserver 1.2.3.4:4000
+
+# создаем приложение с именем phonebook
+manage.py startapp phonebook
+
+после чего прописываем маршут в urls.py и конфигурацию нашего приложения в settings.py (phonebooke_site)
+
+### создаем модель в models.py
+pip install d:\import\Pillow-8.3.1-cp39-cp39-win_amd64.whl  # установка Pillow  в виртуальное окружение
+manage.py makemigrations  # Данной командой мы создаем миграцию, изменения в модель (свой контроль версий моделей)
+manage.py sqlmigrate phonebook 0001  # Данной командой мы просматриваем все изменения в таблице sql по миграции №0001
+manage.py migrate  # Данной командой мы применяем миграцию, изменения в модель (свой контроль версий моделей)
+
+
+### заполнение базы данных в ручном режиме через консоль
+## способ №1
+manage.py shell  # запуск интерпретатора питона для заполнения данных
+from phonebook.models import Phonenumber  # импортируем модель Phonenumber из файла models в папке phonebook
+
+создадим переменную-объект в которую поместим все значения первой записи
+number1 = Phonenumber(
+    subdivision = 'Отдел связи',
+    position = "Начальник отдела связи",
+    surname = "Маринченко",
+    name = "Андрей",
+    second_name = "Васильевич",
+    oficial_telephone = "115",
+    landline_telephone = "",
+    service_fax = "",
+    mobile_telephone = "+375-33-333-33-55"
+)
+
+тоже самое одной строкой:
+number1 = Phonenumber(subdivision = 'Отдел связи', position = "Начальник отдела связи", surname = "Маринченко", name = "Андрей", second_name = "Васильевич", oficial_telephone = "115", landline_telephone = "", service_fax = "", mobile_telephone = "+375-33-333-33-55")
+
+from django.db import connection  # импортируем модуль соединения к базе данных
+connection.queries  # выведет в консоль записанные данные -  база пуста
+number1.save() # сохранит в базу sql созданную запись
+connection.queries  # выведет в консоль записанные данные -  база внесла первую запись
+number1.pk  # выведет ID объекта записи, в нашем случае 1
+
+
+## способ №2 (поэлементное внесение данных)
+number2 = Phonenumber()
+number2.subdivision = 'Отдел связи'
+number2.position = "Заместитель начальника отдела связи"
+number2.surname = "Кудрявцев"
+number2.name = "Руслан"
+number2.second_name = "Владимирович",   # если оставить запятую то в БД запись попадет как список из двух значений
+number2.oficial_telephone = "456",   # если оставить запятую то в БД запись попадет как список из двух значений
+number2.landline_telephone = "8(0214)74-04-33"
+number2.service_fax = "8(0214)74-04-33"
+number2.mobile_telephone = "+375-29-222-20-23"
+number2.save()
+
+
+
+## способ №2 (внесение данных сразу в базу данных)
+number3 = Phonenumber.objects.create(subdivision = 'Отдел связи', position = "Старший офицер отдела связи", surname = "Буко", name = "Евгений", second_name = "Иванович", oficial_telephone = "455", landline_telephone = "", service_fax = "", mobile_telephone = "+375-29-891-58-33")
+number3.pk
+
+
+### просмотр всех записей в базе данных
+Phonenumber.objects.all()  # покажет сколько объектов (строк) создано в БД модели Phonenumber
+
+для преобразования вида вывода этих же данных (например по должности), в models.py прописывается функция __str__(self)
+после чего необходимо выйти из  shell используя команду exit() и подключится заново (так изменения вступят в силу):
+
+manage.py shell  # запуск интерпретатора питона для заполнения данных
+from phonebook.models import Phonenumber  # импортируем модель Phonenumber из файла models в папке phonebook
+Phonenumber.objects.all()  # выведет сведения о базе данных соотнося объект (строку) по должностям
+
+numbers = Phonenumber.objects.all()   # создадим переменную в которую поместим нашу БД
+
+для вывода интерисующих нас столбцов создадим цикл (вывод подразделения должности и фамилии)
+for item in numbers:
+	print(item.subdivision, item.position, item.surname)
+
+## вывод данных БД в которых значения отдельных граф одинаковы, например все записи по отделу связи
+Phonenumber.objects.filter(subdivision='Отдел связи')
+
+## вывод данных по конкретной уникальной записи
+Phonenumber.objects.get(pk=3)  # работает
+Phonenumber.objects.get(subdivision='Отдел связи')  # ошибка т.к. отдел связи не одна запись
+
+#### ОБНОВЛЕНИЕ записи в БД
+number2 = Phonenumber.objects.get(pk=2)  # обратимся к второму объекту (строке) и присвоим ее значнение переменной number2
+number2.second_name = 'Владимирович'  # присваеваем новое значение в разделе отчество
+number2.save()  # сохраняем изменения
+
+number2.oficial_telephone = "456"  # присваеваем новое значение в разделе отчество
+number2.save()  # сохраняем изменения
+
+#### УДАЛЕНИЕ записи в БД
+number7 = Phonenumber.objects.get(pk=7)  # обратимся к второму объекту (строке) и присвоим ее значнение переменной number7
+number7.delete()  # удаление записи из БД
+
+# вывод данных в алфавитном порядке по столбцу
+Phonenumber.objects.order_by('second_name')  # вывод данных в алфавитном порядке по столбцу отчество
+Phonenumber.objects.order_by('-second_name')  # вывод данных в обратном алфавитном порядке по столбцу отчество
+
+Phonenumber.objects.exclude(second_name = 'Владимирович')  # выводит все данные за исключением тех у которы отчетсво =
+
+
+#### РАБОТА С ШАБЛОНАМИ
+в папке нашей модели "phonebook" создаем папку "templates"
+в папке "phonebook/templates" создаем папку "phonebook"
+
+
+#### Работа с админкой
+manage.py createsuperuser
+
+
+C:\pyProject\phoneProject\venv\Scripts\python C:\pyProject\phoneProject\phonebooke_site\manage.py runserver
+
