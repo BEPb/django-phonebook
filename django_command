@@ -186,3 +186,4 @@ manage.py createsuperuser
 
 C:\pyProject\phoneProject\venv\Scripts\python C:\pyProject\phoneProject\phonebooke_site\manage.py runserver
 
+python first/phonebooke_site/manage.py runserver
