@@ -184,6 +184,20 @@ Phonenumber.objects.exclude(second_name = 'Владимирович')  # выв�
 manage.py createsuperuser
 
 
+
+### запуск сервера
 C:\pyProject\phoneProject\venv\Scripts\python C:\pyProject\phoneProject\phonebooke_site\manage.py runserver
 
-python first/phonebooke_site/manage.py runserver
+C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py runserver
+
+
+C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py makemigrations  # Данной командой мы создаем миграцию, изменения в модель (свой контроль версий моделей)
+manage.py sqlmigrate phonebook 0001  # Данной командой мы просматриваем все изменения в таблице sql по миграции №0001
+C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py  migrate  # Данной командой мы применяем миграцию, изменения в модель (свой контроль версий моделей)
+
+python manage.py runserver
+
+
+### применение статических маршрутов
+python manage.py collectstatic
+

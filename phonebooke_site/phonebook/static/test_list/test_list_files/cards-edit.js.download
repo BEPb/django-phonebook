@@ -1,0 +1,289 @@
+
+$('#actions-dd ul.dropdown-menu,#last-action-btn').onx('click', clickAction)
+$('#editmode-btn').onx('click', clickPencil)
+$('#last-action-btn').parent().hide()//addClass('disabled')
+
+if($.part.active().hasClass('edit'))
+    $('#manager-controls').show()
+else
+    $('#manager-controls').hide()
+
+//$('div.card a.btn-remove').onx('click',clickRemove)
+
+//$('div.tab-pane.edit span.inline').on('click', spanClick)
+//$('.edit').card('enterprise').enableEditing()
+//$('.edit').card('department').enableEditing()
+
+function clickPencil(e) {
+    var $pencil=$(e.target),
+        $pencil_li=$pencil.parent()
+
+    if($('#phonebook').data('edit-mode')) {
+        $pencil_li.removeClass('active')
+        $pencil.removeClass('btn-lg')
+        $('#phonebook').data('edit-mode',false).removeClass('edit')
+        $('#phonebook div.card.edit').card().disableEditing()
+        $("#phonebook .tab-pane.edit").sortable('disable')
+        $('#last-action-btn').parent().hide()//slide('right')//.fadeOut()//addClass('disabled')
+        $('#actions-dd').hide()//slide('right')//fadeOut()//addClass('disabled')
+        $('div.logo').off('click')
+    } else {
+        $('#phonebook').data('edit-mode',true).addClass('edit')
+        $pencil_li.addClass('active')
+        $pencil.addClass('btn-lg')
+        $('div.logo').onx('click', uploadImage)
+        $('#phonebook div.card.edit').card().enableEditing()
+        $("#phonebook .tab-pane.edit").sortable('enable')
+        $('#last-action-btn').parent().show()//slide('left')//.fadeIn()//.removeClass('disabled')
+        $('#actions-dd').show()//('left')//.fadeIn()//removeClass('disabled')
+    }
+    e.preventDefault()
+}
+
+function clickAction(e) {
+    var $target= $(e.target),
+        $last_act_btn=$('#last-action-btn'),
+        type=$target.attr('type')
+
+    $last_act_btn.attr('type',type)
+    $last_act_btn.html($target.html())
+    $().card().create({type: type}).span('name').trigger('click')
+    e.preventDefault()
+}
+
+function uploadImage(e) {
+    var $target= $(e.target)
+    //console.log("uploading for ",$target.card('id'))
+    var url='index.php?r=card/upload&id='+$target.card('id')
+    window.location.href = url //'/controller/action?foo=bar'
+    //$.ajax({
+    //    method: 'GET',
+    //    data: { 'id':$target.card('id') },
+    //    url: url,
+    //    async: false
+    //})
+}
+
+function clickRemove(e) {
+    var $target=$(e.target),
+        html='<a class="btn btn-danger btn-xs" id="remove-confirm">'+tr('Delete')+'</a>'
+    $target.closest('a').before(html)
+    $("#remove-confirm").on('click', function(e) {
+        $(this).card().remove()
+        return false
+    })
+    $.fn.onx({overlap:function() { $target.closest('a').prev().remove() }})
+    return false
+}
+
+var tab_map=[[],
+    ['name','ph_internal','email','external_url','comment'],
+    ['name','ph_internal','email'],
+    ['name','ph_internal','job_title','email','ph_mobile','skype','lync','comment']]
+
+function spanClick(e) {
+    //console.log(arguments.callee, ' by ', arguments.callee.caller)
+    var $span = $(e.target),
+        card = $span.card(),
+        items_total=tab_map[card.type].length
+
+    var span_txt = $span.text(),
+        $input_box = $span.prev(),
+        data_id = $input_box.attr('name'),
+        tabindex = tab_map[card.type].indexOf(data_id),
+        last_ajax
+
+    startInput()
+
+    function handleInputTyping(e) {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        var changeFocus
+        if(e.type==="keydown") {
+            if (e.keyCode == 9) {
+                if (!e.shiftKey)  //straight tab
+                    changeFocus = items_total - tabindex > 0 ? jumpNextInput : finishInput
+                else // shift tab
+                    changeFocus = tabindex > 0 ? jumpPrevInput : finishInput
+
+                if (inputUpdated())
+                    saveInputValue(changeFocus) // focus jumping callback (e.g. for a new card to be sure a real id will be assigned)
+                else
+                    changeFocus()
+
+                e.preventDefault()
+                return false
+            }
+        }
+        if(e.keyCode==27) {
+            finishInput()
+            e.preventDefault()
+            return false
+        }
+        if(e.keyCode==13) {
+            if(inputUpdated())
+                saveInputValue(finishInput)
+            else
+                finishInput()
+
+            e.preventDefault()
+            return false
+        }
+    }
+
+    function saveInputValue(nextFocusCallback) {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        var url='index.php?r=site/cardUpdate',
+            data=card.prepareDataToSend(),
+            user_input = $input_box.val()
+
+            data['data'][data_id] = user_input
+
+            if(card.isNew()) // disable switching input before card saved
+                card.$.find('span.inline').off('click')
+
+            animateAjaxFired()
+            $input_box.off('.input')
+
+            last_ajax=$.ajax({
+                dataType: "json",
+                data: data,
+                method: 'POST',
+                url: url
+            })
+            .success(function (data) {
+                animateAjaxSucceeded()
+                if (card.isNew()) {
+                    card.set('id', data.id)
+                    card.$.find('span.inline').onx('click',spanClick)
+                    nextFocusCallback(true)
+                }
+            })
+            .done(function (data) {
+                if (user_input.length > 0) {
+                    $span.removeClass('ph')
+                         .text(user_input)
+                }
+                else {
+                    $span.addClass('ph')
+                         .text(card.placeholder(data_id))
+                }
+            })
+            .fail(function (data) {
+                if (card.isNew())
+                    card.$.find('span.inline').onx('click',spanClick)
+                animateAjaxFailed()
+                nextFocusCallback(false)
+            })
+            .always(function (data) {
+            })
+            if(!card.isNew())
+                nextFocusCallback(true)
+
+
+    }
+
+    function animateAjaxFired() {
+        $input_box.animate({backgroundColor: 'rgb( 212,232,255 )'}, 500)
+    }
+    function animateAjaxFailed() {
+        $input_box.animate({backgroundColor: 'rgb( 255,0,0 )'}, 200).animate({backgroundColor: 'rgb( 255,255,255 )'}, 500, finishInput)
+    }
+    function animateAjaxSucceeded() {
+        $input_box.animate({backgroundColor: 'rgb( 255,255,255 )'}, 500, finishInput)
+    }
+
+    function jumpNextInput(status) {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        if(status===undefined) finishInput()
+        card.span(tab_map[card.type][tabindex+1]).trigger('click')
+    }
+
+    function jumpPrevInput(status) {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        if(status===undefined) finishInput()
+        card.span(tab_map[card.type][tabindex-1]).trigger('click')
+    }
+
+    function startInput() {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        //console.log($.Deferred())
+        card.showDetails()
+        //card.disableToggling().showDetails()
+        // the following line prevents a card from collapsing on click inside the input box
+        $input_box.off('click')
+            .onx('click', function () {
+                return false;
+            });
+
+        // if is not marked as a placeholder - populate value to the input
+        if (!$span.hasClass('ph')) {
+            $input_box.val(span_txt)
+        }
+
+        $span.hide()
+        $input_box.show().focus()
+
+        $input_box.off()
+        $input_box.on("input.input keyup.input keydown.input", handleInputTyping)
+                  .on("focusout.input", focusOut)
+
+    }
+
+
+    function focusOut() {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        if(inputUpdated())
+            saveInputValue(function() {})
+        else
+            finishInput()
+    }
+
+    function finishInput() {
+        //console.log(arguments.callee, ' by ', arguments.callee.caller)
+        $input_box.off('.input')
+        $input_box.fadeOut(100,function() {$span.fadeIn(100); $input_box.val("") })
+    }
+
+    function inputUpdated() {
+        return ($span.text()!==$input_box.val() && !$span.hasClass('ph'))
+            || ($input_box.val().length>0 && $span.hasClass('ph'))
+    }
+
+    e.preventDefault()
+    return false
+
+}
+
+$(function() {
+    $("#phonebook .tab-pane.edit").sortable({
+        placeholder: "glyphicon glyphicon-share-alt placeholder col-xs-12 card",
+        axis: "y",
+        update: onSortUpdate
+    }).sortable('disable')
+
+    $('div.card').hover(function() {
+            $(this).find('span.card').show()
+        },
+        function() {
+            $(this).find('span.card').hide()
+        })
+
+})
+
+function onSortUpdate( event, ui ) {
+            var id=ui.item.card('id')
+            var url='index.php?r=site/cardReorder'
+
+            $.ajax({
+                    dataType: "json",
+                    data: ui.item.card().prepareDataToSend(),
+                    method: 'GET',
+                    url: url
+                }
+            ).done(function(resp) {
+                    if(id==="new") {
+                        ui.item.card('id', resp.card_id)
+                    }
+                });
+}
+

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
+<!--считываем статические данные из папки static-->
+{% load static %}
 <!--указываем язык страницы-->
 <html lang="ru-RU">
 <head>
-<!--    указываем кодировку-->
+    <!--    указываем кодировку-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="d0pxSGEtY0QGHgIKKH4pKx4CCQIGZlQcBQISGlkbBj4xCBMpKnwlBw==">
-<!--    название страницы-->
+    <!--    название страницы-->
     <title>Телефонная книга</title>
-<!--    подключаемые стили-->
-    <link href="./test_list_files/jquery-ui.css" rel="stylesheet">
-    <link href="./test_list_files/bootstrap.css" rel="stylesheet">
-    <link href="./test_list_files/parts.css" rel="stylesheet">
-    <link href="./test_list_files/cards.css" rel="stylesheet">
-    <link href="./test_list_files/site.css" rel="stylesheet">
+    <!--    подключаемые стили-->
+    <link href="{% static 'test_list/test_list_files/jquery-ui.css' %}" rel="stylesheet">
+    <link href="{% static 'test_list/test_list_files/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'test_list/test_list_files/parts.css' %}" rel="stylesheet">
+    <link href="{% static 'test_list/test_list_files/cards.css' %}" rel="stylesheet">
+    <link href="{% static 'test_list/test_list_files/site.css' %}" rel="stylesheet">
 </head>
 <body>
 <div class="wrap">
-<!--    блок верхняя навигационная панель (навбар)-->
+    <!--    блок верхняя навигационная панель (навбар)-->
     <nav id="top-navbar" class="navbar-inverse navbar" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -28,60 +30,65 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="https://phonebook-app.com/go/demo-ru/www/index.php">Телефонная книга</a>
+                <a class="navbar-brand" href="/">Телефонная книга</a>
             </div>
             <div id="top-navbar-collapse" class="collapse navbar-collapse">
                 <ul id="w7" class="navbar-nav hidden-xs nav">
                     <li><a id="navpin-btn" class="glyphicon glyphicon-pushpin"
-                           href="https://phonebook-app.com/go/demo-ru/www/#" title="Закрепить панель"></a></li>
+                           href="#" title="Закрепить панель"></a></li>
                 </ul>
                 <ul class="col-sm-5 col-md-4 navbar-nav nav">
                     <li class="navbar-form navbar-left" role="search">
                         <input id="searchbox" type="text" class="form-control"
-                               placeholder="примеры: сара коннор, официантка, 2039">
+                               placeholder="примеры: Иван Волков, начальник отдела, 2039">
                     </li>
                 </ul>
                 <ul id="w8" class="navbar-nav hidden-sm hidden-xs nav">
-                    <li><a id="search-btn" href="https://phonebook-app.com/go/demo-ru/www/#"><i
+                    <li><a id="search-btn" href="#"><i
                             class="glyphicon glyphicon-search"></i> Поиск</a></li>
-                    <li><a id="reset-btn" href="https://phonebook-app.com/go/demo-ru/www/#"><i
+                    <li><a id="reset-btn" href="#"><i
                             class="glyphicon glyphicon-remove"></i> Сброс</a></li>
                 </ul>
                 <ul id="w9" class="navbar-nav navbar-right nav">
                     <li><a id="print-btn" class="hidden-xs" href="javascript:clickPrint();" part="1"><i
                             class="glyphicon glyphicon-print"></i> </a></li>
-                    <li><a href="https://phonebook-app.com/go/demo-ru/www/index.php?r=site%2Flogin">Войти <i
+                    <li><a href="#">Войти <i
                             class="glyphicon glyphicon-log-in"></i> </a></li>
                 </ul>
                 <ul class="hidden-xs navbar-nav navbar-right nav">
-                    <li><a><i class="glyphicon glyphicon-cloud"></i> интернет</a></li>
+                    <li><a><i class="glyphicon glyphicon-cloud"></i> информация </a></li>
                 </ul>
             </div>
         </div>
     </nav>
-<!--    блок основной контейнер-->
+    <!--    блок основной контейнер-->
     <div id="main-container" class="container-fluid">
+    <!--класс .container для фиксированной ширины или .container-fluid для 100%-ной ширины-->
         <div class="row">
-
+        <!--«Rows» — горизонтальные группы столбцов, которые обеспечивают чтобы столбцы выстроились правильно.-->
             <div id="phonebook" class="tabbable  col-md-12">
                 <div class="row">
+                    <!--левый боковой навбар-->
                     <div class="col-md-2 col-sm-2 col-lg-2 tabs-left">
                         <ul id="dp-tag-list" class="nav nav-tabs">
-                            <li class="active"><a href="https://phonebook-app.com/go/demo-ru/www/#dp-tab-18"
-                                                  data-toggle="tab">Основной</a></li>
-                            <li><a href="https://phonebook-app.com/go/demo-ru/www/#dp-tab-19" data-toggle="tab">Подразделение
+                            <li class="active"><a href="#" data-toggle="tab">Подразделения:</a></li>
+                            <li><a href="#" data-toggle="tab">Подразделение
                                 1</a></li>
-                            <li><a href="https://phonebook-app.com/go/demo-ru/www/#dp-tab-20" data-toggle="tab">Подразделение
+                            <li><a href="#" data-toggle="tab">Подразделение
                                 2</a></li>
                         </ul>
                     </div>
+                    <!--основная информационная таблица справочника-->
                     <div class="tab-content col-md-10 col-sm-10 col-lg-10">
                         <div id="dp-tab-18" class=" tab-pane active" part-id="18">
+
+                            <!--Название организации (шапка таблицы)-->
                             <div class="col-sm-12 entr card " type="1" card-id="836">
                                 <div class="row details">
                                     <div class="col-sm-auto">
+                                        <!--загрузка логотипа организации-->
                                         <div class="logo">
-                                            <img src="./Телефонная книга_files/card836.jpg">
+                                            <img src="{% static 'test_list/test_list_files/polotsk.jpg' %}">
                                         </div>
                                     </div>
                                     <div class="col-sm-auto">
@@ -118,7 +125,7 @@
                                 </div>
                             </div>
 
-
+                            <!--Раздел таблицы (подразделения)-->
                             <div class="card dept col-sm-12 " type="2" card-id="838">
                                 <div class="row details">
                                     <div class="col-sm-11">
@@ -142,7 +149,7 @@
                                                 class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                                 </div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="834">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -182,7 +189,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="835">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -222,7 +229,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="837">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -262,7 +269,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="841">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -303,7 +310,7 @@
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
 
-
+                            <!--Раздел таблицы (подразделения)-->
                             <div class="card dept col-sm-12 " type="2" card-id="839">
                                 <div class="row details">
                                     <div class="col-sm-11">
@@ -327,7 +334,7 @@
                                                 class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                                 </div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="840">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -366,7 +373,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="843">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -406,7 +413,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="844">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -445,7 +452,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="845">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -485,7 +492,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="846">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -525,7 +532,7 @@
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
 
-
+                            <!--Раздел таблицы (подразделения)-->
                             <div class="card dept col-sm-12 " type="2" card-id="849">
                                 <div class="row details">
                                     <div class="col-sm-11">
@@ -549,7 +556,7 @@
                                                 class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                                 </div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="850">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -588,7 +595,7 @@
                                     <a class="btn-report" title="Сообщение менеджеру справочника"><i
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
-
+                            <!--запись-->
                             <div class="card prsn col-sm-12 " type="3" card-id="842">
                                 <div class="row entr">
                                     <div class="col-xs-auto"></div>
@@ -629,12 +636,14 @@
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
                         </div>
+
+<!--                        ???-->
                         <div id="dp-tab-19" class=" tab-pane" part-id="19">
                             <div class="col-sm-12 entr card " type="1" card-id="847">
                                 <div class="row details">
                                     <div class="col-sm-auto">
                                         <div class="logo">
-                                            <img src="./Телефонная книга_files/card847.jpg">
+                                            <img src="{% static 'test_list/test_list_files/card847.jpg' %}">
                                         </div>
                                     </div>
                                     <div class="col-sm-auto">
@@ -1072,12 +1081,13 @@
                                             class="glyphicon glyphicon-exclamation-sign"></i></a></div>
                             </div>
                         </div>
+<!--                        ???-->
                         <div id="dp-tab-20" class=" tab-pane" part-id="20">
                             <div class="col-sm-12 entr card " type="1" card-id="848">
                                 <div class="row details">
                                     <div class="col-sm-auto">
                                         <div class="logo">
-                                            <img src="./Телефонная книга_files/card848.jpg">
+                                            <img src="{% static 'test_list/test_list_files/card848.jpg' %}">
                                         </div>
                                     </div>
                                     <div class="col-sm-auto">
@@ -1518,7 +1528,7 @@
                 </div>
             </div>
 
-
+            <!--Блок Связаться с менеджером раздела-->
             <div id="typoreport-modal" class="fade modal" role="dialog" tabindex="-1">
                 <div class="modal-dialog ">
                     <div class="modal-content">
@@ -1570,23 +1580,25 @@
 </div>
 
 <!--подключаемые ява-скрипты-->
-<script type="text/javascript" async="" src="./test_list_files/analytics.js.download"></script>
-<script async="" src="./test_list_files/tag.js.download"></script>
-<script src="./test_list_files/jquery.js.download"></script>
-<script src="./test_list_files/jquery-ui.js.download"></script>
-<script src="./test_list_files/msg.js.download"></script>
-<script src="./test_list_files/search.js.download"></script>
-<script src="./test_list_files/cards-view.js.download"></script>
-<script src="./test_list_files/cards-edit.js.download"></script>
-<script src="./test_list_files/bootstrap.js.download"></script>
-<script src="./test_list_files/yii.js.download"></script>
-<script src="./test_list_files/yii.validation.js.download"></script>
-<script src="./test_list_files/yii.activeForm.js.download"></script>
-<script type="text/javascript">jQuery(document).ready(function () {
+<script type="text/javascript" async="" src="{% static 'test_list/test_list_files/analytics.js.download' %}"></script>
+<script async="" src="{% static 'test_list/test_list_files/tag.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/jquery.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/jquery-ui.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/msg.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/search.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/cards-view.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/cards-edit.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/bootstrap.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/yii.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/yii.validation.js.download' %}"></script>
+<script src="{% static 'test_list/test_list_files/yii.activeForm.js.download' %}"></script>
+<script type="{% static 'text/javascript' %}">jQuery(document).ready(function () {
 jQuery('#dp-tag-list').tab();
 jQuery('#w6').yiiActiveForm([{"id":"typoreportform-text","name":"text","container":".field-typoreportform-text","input":"#typoreportform-text","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Значение «Сообщение» должно быть строкой.","skipOnEmpty":1});}}], []);
 jQuery('#typoreport-modal').modal({"show":false});
 });
+
+
 </script>    <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -1606,13 +1618,15 @@ jQuery('#typoreport-modal').modal({"show":false});
 </noscript>
 <!-- /Yandex.Metrika counter -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async="" src="./test_list_files/js"></script>
+<script async="" src="{% static 'test_list/test_list_files/js' %}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-165853539-1');
+
+
 
 </script>
 

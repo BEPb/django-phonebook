@@ -5,14 +5,18 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse  # работа с ответами
-from .models import Phonenumber  # из текущей дирректории, файла models импортируем класс Phonenumber
+from .models import Phonenumber, Division, MilitaryUnit  # из текущей дирректории, файла models импортируем класс Phonenumber
 
 def index(request):  # создаем функцию обрабатывающую запрос index
     # phonebook = Phonenumber.objects.order_by('-create_at')   # отображение в обратном порядке по дате создания записи
     phonebook = Phonenumber.objects.all()  # отображение всего списка (порядок отображения указан в админке)
+    division = Division.objects.all()
+    unit = MilitaryUnit.objects.all()
     context = {
         'phonebook': phonebook,
-        'title': 'Список телефонных номеров'
+        'title': 'Список телефонных номеров',
+        'division': division,
+        'unit': unit
     }
     return render(request, template_name='phonebook/index.html', context=context)  # ответ - заполненный шаблон
     # request - работа с запросами
