@@ -5,7 +5,8 @@ from django.db import models
 # Create your models here.
 class Phonenumber(models.Model):
     # id - создается по умолчанию
-    subdivision = models.CharField(max_length=150, verbose_name='подразделение')  # поле "подразделение", максимальная длинна 150 символов
+
+    subdivision = models.CharField(max_length=150, verbose_name='подотдел', blank=True)  # поле "подотдел", максимальная длинна 150 символов
     position = models.CharField(max_length=150, verbose_name='должность')  # поле "должность", максимальная длинна 150 символов
     surname = models.CharField(max_length=50, verbose_name="фамилия")  # поле "фамилия", максимальная длинна 50 символов
     name = models.CharField(max_length=20, verbose_name="имя")  # поле "имя", максимальная длинна 20 символов
@@ -25,6 +26,18 @@ class Phonenumber(models.Model):
     note = models.TextField(blank=True, verbose_name="примечание")  # поле "примечание"
     service_email = models.CharField(max_length=150, verbose_name='почта', blank=True)  # поле с указание служебной почты
 
+    division = models.ForeignKey('Division', on_delete=models.PROTECT, null=True, verbose_name='Подразделение')
+    # ForeignKey - специфическое поле отношений (многие-к-одному)
+    # on_delete = models.PROTECT -  в случае удаления одного из подразделений потребует переопределения данных в нем
+    # on_delete = models.CASCADE -  в случае удаления одного из подразделений удалит все данные в нем
+    # null = True - поскольку мы добовляем это поле гораздо позже, оно будет не заполнено, необходимо разрешить пустые поля
+
+    military_unit = models.ForeignKey('MilitaryUnit', on_delete=models.PROTECT, null=True, verbose_name='Войсковая часть')
+    # ForeignKey - специфическое поле отношений (многие-к-одному)
+    # on_delete = models.PROTECT -  в случае удаления одного из подразделений потребует переопределения данных в нем
+    # on_delete = models.CASCADE -  в случае удаления одного из подразделений удалит все данные в нем
+    # null = True - поскольку мы добовляем это поле гораздо позже, оно будет не заполнено, необходимо разрешить пустые поля
+
     def __str__(self):  #  создадим функцию для вывода объектов (строк базы данных) не по номеру объекта (ID),
         # а по должности (position)
         # __str__ - Это строковое представление объекта
@@ -35,13 +48,30 @@ class Phonenumber(models.Model):
         verbose_name_plural = 'Записи'  # значение в множественном числе
         ordering = ['-create_at']  # сортировка выводимых значений в обратной последовательности даты создания
 
-class Category(models.Model):
-    title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование категории')
+class Division(models.Model):  # создаем специфичиский класс к полю отношений "подразделение"
+    title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование подразделения')
 
-    def __str__(self):
+    def __str__(self):#  создадим функцию для вывода объектов (строк базы данных) не по номеру объекта (ID),
+        # а по его строковому представлению подразделения (division)
+        # __str__ - Это строковое представление объекта
         return self.title
 
-    class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
-        ordering = ['id']
+    class Meta:  # задаем параметры админки
+        verbose_name = 'Подразделение'  # отображаемое значение в шапке админки
+        verbose_name_plural = 'Подразделения'  # значение в множественном числе
+        ordering = ['id']   # указываем по какому полю идет сортировка
+
+
+class MilitaryUnit(models.Model):  # создаем специфичиский класс к полю отношений "подразделение"
+    title = models.CharField(max_length=7, db_index=True, verbose_name='№ в\ч')
+    name_unity = models.CharField(max_length=150, db_index=True, null=True, verbose_name='Наименование в\ч')
+
+    def __str__(self):#  создадим функцию для вывода объектов (строк базы данных) не по номеру объекта (ID),
+        # а по его строковому представлению подразделения (division)
+        # __str__ - Это строковое представление объекта
+        return self.title
+
+    class Meta:  # задаем параметры админки
+        verbose_name = 'Войсковая часть'  # отображаемое значение в шапке админки
+        verbose_name_plural = 'Воинские части'  # значение в множественном числе
+        ordering = ['id']   # указываем по какому полю идет сортировка

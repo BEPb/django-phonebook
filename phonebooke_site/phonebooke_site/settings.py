@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-gqg204j94kaz)%dstli9zo9#uar2gy#z!65bgq)26lvdkeo1b8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]  # указываем ip-адресс базы данных, логин, пароль , "root", "adminsql"
 
 
 # Application definition
@@ -74,10 +74,20 @@ WSGI_APPLICATION = 'phonebooke_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# дефолтные настройки для подключения к бд sqllite
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': 'my.cnf'
+        },
     }
 }
 
@@ -120,6 +130,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'phonebook/static'),
+]
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -127,4 +143,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # указываем папку для сохранения медиа (фотографий)
-MEDIA_URL = '/media/'  # указываем url адресс - ссылка на папку midia
+MEDIA_URL = '/media/'  #указываем url адресс - ссылка на папку midia
