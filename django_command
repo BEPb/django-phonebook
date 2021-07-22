@@ -186,8 +186,6 @@ manage.py createsuperuser
 
 
 ### запуск сервера
-#C:\pyProject\phoneProject\venv\Scripts\python C:\pyProject\phoneProject\phonebooke_site\manage.py runserver
-
 C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py runserver
 
 
@@ -216,3 +214,7 @@ python -m pip uninstall mysql_connector-python
 
 python -m pip install d:\import\cryptography-3.4.7-cp36-abi3-win_amd64.whl
 python -m pip install d:\import\mysqldb_wrapper-0.10.5-py3-none-any.whl
+
+#работа через командную строку
+cd c:\Python\Python39
+

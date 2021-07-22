@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-gqg204j94kaz)%dstli9zo9#uar2gy#z!65bgq)26lvdkeo1b8
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost"]  # указываем ip-адресс базы данных, логин, пароль , "root", "adminsql"
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -75,21 +75,21 @@ WSGI_APPLICATION = 'phonebooke_site.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # дефолтные настройки для подключения к бд sqllite
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'my.cnf'
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {
+#             'read_default_file': 'my.cnf'
+#         },
+#     }
+# }
 
 
 # Password validation
