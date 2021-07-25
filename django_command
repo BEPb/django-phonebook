@@ -79,7 +79,7 @@ manage.py startapp phonebook
 после чего прописываем маршут в urls.py и конфигурацию нашего приложения в settings.py (phonebooke_site)
 
 ### создаем модель в models.py
-pip install d:\import\Pillow-8.3.1-cp39-cp39-win_amd64.whl  # установка Pillow
+pip install d:\import\Pillow-8.3.1-cp39-cp39-win_amd64.whl  # установка Pillow  в виртуальное окружение
 manage.py makemigrations  # Данной командой мы создаем миграцию, изменения в модель (свой контроль версий моделей)
 manage.py sqlmigrate phonebook 0001  # Данной командой мы просматриваем все изменения в таблице sql по миграции №0001
 manage.py migrate  # Данной командой мы применяем миграцию, изменения в модель (свой контроль версий моделей)
@@ -188,14 +188,10 @@ manage.py createsuperuser
 ### запуск сервера
 C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py runserver
 
-# работа с миграциями
+
 C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py makemigrations  # Данной командой мы создаем миграцию, изменения в модель (свой контроль версий моделей)
 manage.py sqlmigrate phonebook 0001  # Данной командой мы просматриваем все изменения в таблице sql по миграции №0001
 C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\phonebooke_site\manage.py  migrate  # Данной командой мы применяем миграцию, изменения в модель (свой контроль версий моделей)
-
-# Работа со статическими файлами bootstrap
-python C:\pyProject\Django-sites\first\phonebooke_site\manage.py collectstatic
-
 
 #### Работа с mySQL
 устанавливаем модули в указанной последовательности для подключения к mySQL
@@ -212,7 +208,6 @@ python -m pip install d:\import\for_mysql_connector\mysql_connector_python-8.0.2
 удаление пакетов
 python -m pip uninstall mysql_connector
 python -m pip uninstall mysql_connector-python
-
 python -m pip install d:\import\cryptography-3.4.7-cp36-abi3-win_amd64.whl
 python -m pip install d:\import\mysqldb_wrapper-0.10.5-py3-none-any.whl
 
@@ -220,3 +215,7 @@ python -m pip install d:\import\mysqldb_wrapper-0.10.5-py3-none-any.whl
 #работа через командную строку
 cd c:\Python\Python39
 python C:\pyProject\Django-sites\first\phonebooke_site\manage.py runserver
+
+
+#подключение статики
+python C:\pyProject\Django-sites\first\phonebooke_site\manage.py collectstatic
