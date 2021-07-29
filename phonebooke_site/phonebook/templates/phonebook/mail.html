@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<!--страница отправки почты-->
+{% block title %}
+Обратная связь :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<h1>Обратная связь</h1>
+<h5>Связаться с менеджером проекта</h5>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+</form>
+
+
+{% endblock %}

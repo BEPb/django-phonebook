@@ -1,4 +1,4 @@
-<!--страница перечисления всех подразделений-->
+<!--главная страница - основая информационная часть -->
 {% extends 'base.html' %}
 
 {% block title %}
@@ -11,7 +11,6 @@
 {% endblock %}
 
 {% block content %}
-{# Шапка записи #}
 <div class="col-sm-12 entr card " type="1" card-id="836">
         <div class="row details">
             <div class="col-sm-auto">
@@ -19,11 +18,11 @@
                 <div class="logo">
 
                     {# для отображения изображения создаем цикл для обращения к массиву line#}
-                    {% for item in line %}
+
                     <div class="media">
-                        <img src="{{ item.photo.url }}" alt='' width="100">
+                        <img src="{{ phonebooks.photo.url }}" alt='' width="100">
                     </div>
-                        {% endfor %}
+
                 </div>
             </div>
             <div class="col-sm-auto">
@@ -56,34 +55,30 @@
             <div class="bottom-right row">
                 <a class="btn-report" title="Сообщение менеджеру справочника"><i
                         class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+            <!--        </div>-->
         </div>
     </div>
-
-{# Данные записи #}
+<!--основная информационная таблица справочника-->
 <div id="dp-tab-18" class=" tab-pane active">
     <!--указываем тип таблицы   -->
     <table class="table table-striped">
         <!--создаем цикл перечисления в\ч, открываем строку, записываем всю информацию-->
-                     <!--задаем цикл перечисления записей-->
-
-{% for item in phonebooks %}
-    <!--открываем строку-->
-    <tr>
-        <!--в каждом столбце прописываем значения-->
-        <td> <a href="{{item.get_absolute_url}}"> {{item.surname}} </a></td>
-        <td> {{item.name}}</td>
-        <td> {{item.second_name}}</td>
-        <td> {{item.position}}</td>
-        <td> {{item.subdivision}}</td>
-        <td> {{item.oficial_telephone}}</td>
-        <td> {{item.landline_telephone}}</td>
-        <td> {{item.service_fax}}</td>
-        <td> {{item.mobile_telephone}}</td>
-        <td> {{item.division}}</td>
-        <td> {{item.military_unit}}</td>
-    </tr>
-{% endfor %}
+        {% for item in phonebooks %}
+            <tr>
+                <!--в каждом столбце прописываем значения-->
+                            <td> <a href="{{item.get_absolute_url}}"> {{item.surname}} </a></td>
+                            <td> {{item.name}}</td>
+                            <td> {{item.second_name}}</td>
+                            <td> {{item.position}}</td>
+                            <td> {{item.subdivision}}</td>
+                            <td> {{item.oficial_telephone}}</td>
+                            <td> {{item.landline_telephone}}</td>
+                            <td> {{item.service_fax}}</td>
+                            <td> {{item.mobile_telephone}}</td>
+                            <td> {{item.division}}</td>
+                            <td> {{item.military_unit}}</td>
+            </tr>
+        {% endfor %}
     </table>
 </div>
-
 {% endblock %}

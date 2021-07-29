@@ -28,6 +28,14 @@ urlpatterns = [  # в левой части - запрос, в правой ме
     path('phonebook/', include('phonebook.urls')),  # прописываем все маршруты к приложению phonebook
 ]
 
-
+# отладчик по умолчанию
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# в качестве отладчика используем модуль debug_toolbar
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns = [
+#                       path('__debug__/', include(debug_toolbar.urls)),
+#                   ] + urlpatterns
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

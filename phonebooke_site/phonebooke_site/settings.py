@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'debug_toolbar',  # подключенный модуль debug_toolbar (отладки приложения)
     'phonebook.apps.PhonebookConfig',  # подключенный модуль конфигурации phonebook в файле apps.py к классу PhonebookConfig
 ]
 
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',  # подключенный модуль debug_toolbar (отладки приложения)
 ]
 
 ROOT_URLCONF = 'phonebooke_site.urls'
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'phonebooke_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # прописываем адрес основы наследуемого шаблона
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,7 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'phonebook/static'),
+    os.path.join(BASE_DIR, 'phonebook/static'),  # указываем статику приложения для перемещения в корневой каталог
 ]
 
 
@@ -146,3 +148,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # указываем папку для сохранения медиа (фотографий)
 MEDIA_URL = '/media/'  #указываем url адресс - ссылка на папку midia
+
+
+INTERNAL_IPS = ['127.0.0.1']  # необходимо указать для DebugToolbar (модуля отладки приложения)
+
+# подключение отправки почты
+EMAIL_HOST = 'vch2034.gpk.by'  #'smtp.ukr.net'
+EMAIL_PORT = 25 #465 # 2525
+EMAIL_HOST_USER = 'phonemail@vch2034.gpk.by'  # email user
+EMAIL_HOST_PASSWORD = '12345678'  # email password
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False  # True
+
+# кеширование сайта
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'django_cache'),  # место и имя папки для кеширования
+    }
+}
