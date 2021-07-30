@@ -1,0 +1,38 @@
+<!--страница перечисления всех подразделений в левом навбаре-->
+
+<!--левый боковой навбар-->
+<!--{{arg1}} {{arg2}} передаем дополнительные аргументы-->
+{#-Закоментировано!!!-#}
+{% comment %}
+<nav class="nav flex-column">
+  <a class="nav-link active" aria-current="page" href="#">Подразделения:</a>
+    {% for di in divisions %}
+
+  <!--  отображение списка подразделений через прямого обращение к номеру записи в базе данных -->
+  <!--  ссылки формируются также через через прямого обращение к номеру записи в базе данных-->
+  {# Закоментировано!!! <a class="nav-link" href="{% url 'division' di.pk %}">{{di.title}}</a>  #}
+
+  <!--  отображение списка подразделений через прямого обращение к номеру записи в базе данных -->
+  <!--  ссылка формируется через метод get_absolute_url описанного в классе Division файла models.py-->
+  <a class="nav-link" href="{{di.get_absolute_url}}">{{di.title}}</a>
+
+    {% endfor %}
+  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>
+{% endcomment %}
+
+<div class="list-group">
+{#- Перечисление всех подразделений -#}
+{% for di in divisions %}
+
+  <!--  отображение списка подразделений через прямого обращение к номеру записи в базе данных -->
+  <!--  ссылка формируется через метод get_absolute_url описанного в классе Division файла models.py-->
+
+  <a href="{{ di.get_absolute_url }}" class="list-group-item list-group-item-action">
+    {{ di.title }}     ({{ di.cnt }})
+  </a>
+<!--  <span class="badge badge-pill badge-primary ">{{ di.title }} {{ di.cnt }}</span>-->
+
+
+{% endfor %}
+</div>

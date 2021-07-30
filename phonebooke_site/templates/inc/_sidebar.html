@@ -1,0 +1,28 @@
+{#-Левый боковой навбар-#}
+
+<!--{# загружаем пользовательский тег #}-->
+{% load phonebook_tags %}
+<!--{# используем пользовательский тег загрузки списка всех подразделений#}-->
+{% get_division as divisions %}
+
+<!--закоментируем подробный вид отображения сайдбара, заменим его на пользовательский тег show_divisions-->
+{% comment %}
+{#-Закоментировано!!!-#}
+<!--левый боковой навбар-->
+<nav class="nav flex-column">
+  <a class="nav-link active" aria-current="page" href="#">Подразделения:</a>
+    {% for di in divisions %}
+  <a class="nav-link" href="{% url 'division' di.pk %}">{{di.title}}</a>
+    {% endfor %}
+  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>
+{% endcomment %}
+
+
+
+<nav class="nav flex-column">
+  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Подразделения:</a>
+   <!--запускаем пользовательский тег show_divisions, каторый данные загружает уже со страницы 'phonebook/list_divisions.html'-->
+  {% show_divisions %}
+  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>

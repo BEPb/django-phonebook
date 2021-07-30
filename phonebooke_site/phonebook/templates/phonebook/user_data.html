@@ -1,0 +1,103 @@
+<!--страница отображения данных о одной записи-->
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }} :: {{ block.super }}
+{% endblock %}
+
+<!--левый боковой навбар-->
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+
+{# Шапка записи #}
+<div class="col-sm-12 entr card " type="1" card-id="836">
+        <div class="row details">
+            <div class="col-sm-auto">
+                <!--загрузка логотипа организации-->
+                <div class="logo">
+
+                    {# для отображения изображения создаем цикл для обращения к массиву line#}
+                    {% for item in line %}
+                    <div class="media">
+                        <img src="{{ item.photo.url }}" alt='' width="100">
+                    </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>
+                            <span class="inline"
+                                  data-id="name">Войсковая часть 2034</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="col-sm-12"><h4><small>
+                    <span class="inline phone-alt"
+                          data-id="ph_internal">8 (01714) 300-00-00</span>
+                </small></h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <a href="mailto:mail@vch2034.gpk.by" target="_top"><i
+                            class="glyphicon glyphicon-envelope"></i></a>
+                    <span class="inline email" data-id="email">mail@vch2034.gpk.by</span> </small>
+                </h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <a href="https://vch2034.gpk.by/" target="_blank">
+                        <span class="inline url" data-id="external_url">https://vch2034.gpk.by</span></a>
+                </small></h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <span class="inline" data-id="comment"></span>
+                </small></h4></div>
+            </div>
+            <div class="bottom-right row">
+                <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                        class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+        </div>
+    </div>
+
+{# Данные записи #}
+<div id="dp-tab-18" class=" tab-pane active">
+    <div class="card mb-3">
+    <div class="card-header">
+        Подразделение: <a href="{{ phone_item.division.get_absolute_url }}">{{ phone_item.division }}</a>
+    </div>
+    <div class="card-body">
+        {% if item.photo %}
+        <img src="{{ phone_item.photo.url }}" alt="" width="350" class="float-left mr-3">
+        {% else %}
+        <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="float-left mr-3">
+        {% endif %}
+
+        <h6 class="card-title">Войсковая часть {{ phone_item.military_unit }} ({{ phone_item.military_unit.name_unity }})</h6>
+        <h6 class="card-title">Подразделение: {{ phone_item.division }},  {{phone_item.subdivision}}</h6>
+        <h6 class="card-title">Должность: {{ phone_item.position }} </h6>
+        <h6 class="card-title">Ф.И.О.: {{ phone_item.surname }} {{ phone_item.name }} {{ phone_item.second_name }}</h6>
+        <h6 class="card-title">Служебный внутренний телефон: {{ phone_item.oficial_telephone }}</h6>
+        <h6 class="card-title">Служебный городской телефон: {{ phone_item.landline_telephone }}</h6>
+        <h6 class="card-title">Служебный факс: {{ phone_item.service_fax }}</h6>
+        <h6 class="card-title">Личный мобильный телефон: {{ phone_item.mobile_telephone }}</h6>
+        <p class="card-text"></p>
+    </div>
+    <div class="card-footer text-muted">
+        Запись создана: {{ phone_item.create_at|date:"Y-m-d H:i:s" }}
+        Последнее обновление: {{ phone_item.update_at|date:"Y-m-d H:i:s" }}
+    </div>
+</div>
+
+
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

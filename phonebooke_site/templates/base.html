@@ -1,0 +1,119 @@
+<!doctype html>
+<!--версия офлайн-->
+<!--считываем статические данные из папки static-->
+{% load static %}
+<!--html с автоматической загрузкой элементов bootstrap-->
+
+<!--указываем язык страницы-->
+<html lang="ru-RU">
+<head>
+    <!-- Обязательные метатеги -->
+    <!--    указываем кодировку-->
+    <meta charset="utf-8">
+    <!-- Настройка viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    подключаемые стили bootstrap-->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--    подключаем собственный стиль -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--подлключаем js bootstrap скрипты-->
+    <script defer src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!--    название страницы-->
+    <title>{% block title %}Справочник{% endblock %}</title>
+
+</head>
+<body>
+<!--верхний навбар-->
+{% include 'inc/_nav.html' %}
+<!--    блок основной контейнер-->
+<div id="main-container" class="container-fluid">
+    <!--класс .container для фиксированной ширины или .container-fluid для 100%-ной ширины-->
+    <div class="row">
+        <!--«Rows» — горизонтальные группы столбцов, которые обеспечивают чтобы столбцы выстроились правильно.-->
+        <div id="phonebook" class="tabbable  col-md-12">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-lg-2 tabs-left">
+                    {% block sidebar %}SIDEBAR{% endblock %}
+                </div>
+                <div class="tab-content col-md-10 col-sm-10 col-lg-10">
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    {% block content %}CONTENT{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--блок пагинации-->
+<div id="main-container" class="container-fluid">
+       <div class="row">
+        <!--«Rows» — горизонтальные группы столбцов, которые обеспечивают чтобы столбцы выстроились правильно.-->
+        <div id="phonebook" class="tabbable  col-md-12">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-lg-2 tabs-left">
+<!--                пустой блок слева напротив пагинации-->
+                </div>
+                <div class="tab-content col-md-10 col-sm-10 col-lg-10">
+                    <!--    блок пагинации проверка на наличие других страниц-->
+                    {% if page_obj.has_other_pages %}
+                                <nav aria-label="...">
+                                    <ul class="pagination">
+                                        <!--проверка на наличие предыдущих страниц-->
+                                        {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Предыдущая</a>
+                                        </li>
+                                        {% endif %}
+                                        <!--цикл создания ссылок страниц в зависимости от количества записей-->
+                                        {% for p in page_obj.paginator.page_range %}
+                                        <!--обозначение активной текущей страницы-->
+                                        {% if page_obj.number == p %}
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="?page={{ p }}">{{ p }} <span class="sr-only"></span></a>
+                                        </li>
+
+                                        <!--определяет по сколько страниц влево и право от текущей выводить (в нашем случае по две)-->
+                                        {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                                        </li>
+                                        {% endif %}
+
+                                        {% endfor %}
+                                        <!--проверка на наличие следующей страницы-->
+                                        {% if page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                                {% endif %}
+                    Время загрузки справочника: {% now "d-m-Y H:i:s" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
