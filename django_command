@@ -128,7 +128,7 @@ number2.save()
 
 
 
-## способ №2 (внесение данных сразу в базу данных)
+## способ №3 (внесение данных сразу в базу данных)
 number3 = Phonenumber.objects.create(subdivision = 'Отдел связи', position = "Старший офицер отдела связи", surname = "Буко", name = "Евгений", second_name = "Иванович", oficial_telephone = "455", landline_telephone = "", service_fax = "", mobile_telephone = "+375-29-891-58-33")
 number3.pk
 
@@ -195,7 +195,6 @@ C:\pyProject\Django-sites\venv\Scripts\python C:\pyProject\Django-sites\first\ph
 
 #### Работа с mySQL
 устанавливаем модули в указанной последовательности для подключения к mySQL
-
 сначала устанавливаем второстепенные модули
 C:\pyProject\Django-sites\venv\Scripts\python -m pip install d:\import\for_mysql_connector\lz4-3.1.3-cp39-cp39-win_amd64.whl
 C:\pyProject\Django-sites\venv\Scripts\python -m pip install d:\import\for_mysql_connector\zstandard-0.15.2-cp39-cp39-win_amd64.whl
@@ -204,17 +203,19 @@ python -m pip install d:\import\for_mysql_connector\six-1.16.0-py2.py3-none-any.
 python -m pip install d:\import\for_mysql_connector\decorator-5.0.9-py3-none-any.whl
 python -m pip install d:\import\for_mysql_connector\gssapi-1.6.14-cp39-cp39-win_amd64.whl
 python -m pip install d:\import\for_mysql_connector\protobuf-3.17.3-cp39-cp39-win_amd64.whl
-
 устанавливаем модуль подключения к mySQL connector
 python -m pip install d:\import\for_mysql_connector\mysql_connector_python-8.0.26-cp39-cp39-win_amd64.whl
-
 удаление пакетов
 python -m pip uninstall mysql_connector
 python -m pip uninstall mysql_connector-python
-
 python -m pip install d:\import\cryptography-3.4.7-cp36-abi3-win_amd64.whl
 python -m pip install d:\import\mysqldb_wrapper-0.10.5-py3-none-any.whl
 
+
 #работа через командную строку
 cd c:\Python\Python39
+python C:\pyProject\Django-sites\first\phonebooke_site\manage.py runserver
 
+
+#подключение статики
+python C:\pyProject\Django-sites\first\phonebooke_site\manage.py collectstatic

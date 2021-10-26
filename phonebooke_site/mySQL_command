@@ -1,35 +1,37 @@
 # Описание команда mySQL
-# показать все базы данных
-SHOW DATABASES;
+# основные команды:
+SHOW DATABASES; - показать все имеющиеся БД,
+show tables; - показать список таблиц текущей БД (предварительно ее надо выбрать с помощью оператора use),
+describe имя_таблицы; - показать описание столбцов указанной таблицы.
+describe phone;
 
+# создаем базу данных
+CREATE DATABASE phonebook;
 
-CREATE TABLE phone (
-  ID INT(12) NOT NULL AUTO_INCREMENT,
-  DEPARTMENT INT(12) NOT NULL,
-  SEQUENCE SMALLINT(6) NOT NULL,
-  TITLE VARCHAR(50) NOT NULL,
-  RANK VARCHAR(10) NULL,
-  EMPLOYEE VARCHAR(50) NULL,
-  SERVICE BLOB NULL,
-  PERSONAL BLOB NULL,
-  EMAIL BLOB NULL,
-  BIRTH DATE NULL,
-  HIDE TINYINT(1) NOT NULL,
-  PRIMARY KEY (ID)
-);
-- Описание для таблицы phone
+# подключаемся к базе данных
+USE phonebook;
+
+#загруза таблицы из csv файла
+LOAD DATA INFILE 'C:\pyProject\Django-sites\first\phonebooke_site\phone.csv'
+INTO TABLE phone
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+
+DROP TABLE IF EXISTS phone;
 CREATE TABLE phone (
   ID INT(12) UNSIGNED NOT NULL AUTO_INCREMENT,
-  DEPARTMENT INT(12) UNSIGNED NOT NULL,
-  SEQUENCE SMALLINT(6) UNSIGNED NOT NULL,
-  TITLE VARCHAR(50) NULL,
-  RANK VARCHAR(10) NULL,
-  EMPLOYEE VARCHAR(50) NULL,
-  SERVICE BLOB NULL,
-  PERSONAL BLOB NULL,
-  EMAIL BLOB NULL,
-  BIRTH DATE NULL,
-  HIDE TINYINT(1) NOT NULL,
+  DEPARTMENT INT(12) UNSIGNED NOT NULL COMMENT 'DEPARTMENT',
+  SEQUENCE SMALLINT(6) UNSIGNED NOT NULL COMMENT 'SEQUENCE',
+  TITLE VARCHAR(50) DEFAULT NULL COMMENT 'TITLE',
+  RANK VARCHAR(10) DEFAULT NULL COMMENT 'RANK',
+  EMPLOYEE VARCHAR(50) DEFAULT NULL COMMENT 'EMPLOYEE',
+  SERVICE BLOB DEFAULT NULL COMMENT 'SERVICE',
+  PERSONAL BLOB DEFAULT NULL COMMENT 'PERSONAL',
+  EMAIL BLOB DEFAULT NULL COMMENT 'EMAIL',
+  BIRTH DATE DEFAULT NULL COMMENT 'BIRTH',
+  HIDE TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'HIDE',
   PRIMARY KEY (ID),
   CONSTRAINT FK_phone_department_ID FOREIGN KEY (DEPARTMENT)
     REFERENCES department(ID) ON DELETE CASCADE ON UPDATE CASCADE
@@ -39,31 +41,22 @@ AUTO_INCREMENT = 3313
 AVG_ROW_LENGTH = 174
 CHARACTER SET utf8
 COLLATE utf8_general_ci
-COMMENT = '';
+COMMENT = 'COMMENT';
 
-
-LOAD DATA INFILE 'C:\pyProject\Django-sites\first\phonebooke_site\phone.csv'
-INTO TABLE discounts
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY 'n'
-IGNORE 1 ROWS;
-
-
-CREATE TABLE phone (
-  ID INT(12) UNSIGNED NOT NULL AUTO_INCREMENT,
-  DEPARTMENT INT(12) NOT NULL
-);
-
-LOAD DATA INFILE 'C:\pyProject\Django-sites\first\phonebooke_site\phone.csv'
-INTO TABLE phone
-FIELDS TERMINATED BY ',' ENCLOSED BY '"'
-LINES TERMINATED BY 'n'
-IGNORE 1 ROWS;
-
-LOAD DATA INFILE 'C:\pyProject\Django-sites\first\phonebooke_site\phone.csv'
-INTO TABLE phone
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
+describe phone;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| ID         | int          | YES  |     | NULL    |       |
+| DEPARTMENT | int          | YES  |     | NULL    |       |
+| SEQUENCE   | int          | YES  |     | NULL    |       |
+| TITLE      | varchar(100) | YES  |     | NULL    |       |
+| RANK       | varchar(50)  | YES  |     | NULL    |       |
+| EMPLOYEE   | varchar(100) | YES  |     | NULL    |       |
+| SERVICE    | blob         | YES  |     | NULL    |       |
+| PERSONAL   | blob         | YES  |     | NULL    |       |
+| EMAIL      | blob         | YES  |     | NULL    |       |
+| BIRTH      | date         | YES  |     | NULL    |       |
+| HIDE       | int          | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+11 rows in set (0.01 sec)

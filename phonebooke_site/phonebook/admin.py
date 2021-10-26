@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+# настройка админки
 # Register your models here.
 
 from .models import Phonenumber, Division, MilitaryUnit
