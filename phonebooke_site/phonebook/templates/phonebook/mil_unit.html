@@ -1,0 +1,91 @@
+<!--страница отображения всех организаций (воинских частей)-->
+{% extends 'base.html' %}
+
+{% load phonebook_tags %}
+
+{% block title %}
+    {{ title }} :: {{ block.super }}
+{% endblock %}
+
+<!--левый боковой навбар-->
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<!--запускаем пользовательский тег show_divisions, каторый данные загружает уже со страницы 'phonebook/list_divisions.html'-->
+{# Шапка записи #}
+<div class="col-sm-12 entr card " type="1" card-id="836">
+        <div class="row details">
+            <div class="col-sm-auto">
+                <!--загрузка логотипа организации-->
+                <div class="logo">
+
+                    {# для отображения изображения создаем цикл для обращения к массиву line#}
+                    {% for item in line %}
+                    <div class="media">
+                        <img src="{{ item.photo.url }}" alt='' width="100">
+                    </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>
+                            <span class="inline"
+                                  data-id="name">Войсковая часть 2034</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="col-sm-12"><h4><small>
+                    <span class="inline phone-alt"
+                          data-id="ph_internal">8 (01714) 300-00-00</span>
+                </small></h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <a href="mailto:mail@vch2034.gpk.by" target="_top"><i
+                            class="glyphicon glyphicon-envelope"></i></a>
+                    <span class="inline email" data-id="email">mail@vch2034.gpk.by</span> </small>
+                </h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <a href="https://vch2034.gpk.by/" target="_blank">
+                        <span class="inline url" data-id="external_url">https://vch2034.gpk.by</span></a>
+                </small></h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <span class="inline" data-id="comment"></span>
+                </small></h4></div>
+            </div>
+            <div class="bottom-right row">
+                <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                        class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+        </div>
+    </div>
+
+{# Данные записи #}
+<div id="dp-tab-18" class=" tab-pane active">
+    <!--указываем тип таблицы   -->
+    <table class="table table-striped">
+        <!--создаем цикл перечисления в\ч, открываем строку, записываем всю информацию-->
+                     <!--задаем цикл перечисления записей-->
+
+{% for item in phonebooks %}
+    <!--открываем строку-->
+    <tr>
+        <!--в каждом столбце прописываем значения-->
+        <td> <a href="{{item.get_absolute_url}}"> {{item.surname}} </a></td>
+        <td> {{item.name}}</td>
+        <td> {{item.second_name}}</td>
+        <td> {{item.position}}</td>
+        <td> {{item.subdivision}}</td>
+        <td> {{item.oficial_telephone}}</td>
+        <td> {{item.landline_telephone}}</td>
+        <td> {{item.service_fax}}</td>
+        <td> {{item.mobile_telephone}}</td>
+        <td> {{item.division}}</td>
+        <td> {{item.military_unit}}</td>
+    </tr>
+{% endfor %}
+    </table>
+</div>
+{% endblock %}

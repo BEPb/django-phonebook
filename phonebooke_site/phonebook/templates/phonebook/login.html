@@ -1,0 +1,26 @@
+# страница логирования
+{% extends 'base.html' %}
+# за основу берется шаблон 'base.html'
+
+# вставка блока тайтла (подписи страницы)
+{% block title %}
+Login :: {{ block.super }}
+{% endblock %}
+
+# вставка блока бокового сайдбара
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+# вставка блока контента и его содержимое
+{% block content %}
+
+<h1>Страница логирования</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Авторизоваться</button>
+</form>
+
+{% endblock %}

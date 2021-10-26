@@ -1,0 +1,88 @@
+<!--страница добавления записи в справочник-->
+{% extends 'base.html' %}
+
+{% block title %}
+    Добавление записи :: {{ block.super }}
+{% endblock %}
+
+<!--левый боковой навбар-->
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<!--блок контента-->
+<h1>Добавить запись</h1>
+<form action="{% url 'add_phone' %}" method="post">
+    <!--    добавим тег токен проверки-->
+    {% csrf_token %}
+
+    {# автоматический рендеринг #}
+    <!--    выведем форму, as_p - каждое поле в отдельном параграфе -->
+    {{form.as_p}}
+
+
+    {# Закоментировано!!! в ручном режиме прописываем формы #}
+    {% comment %}
+    {{ form.non_field.errors }}
+    <div class="form-group">
+        <label for="{{ form.subdivision.id_for_label }}">подотдел: </label>
+        {{ form.subdivision }}
+        <div class="invalid-feedback">
+            {{ form.subdivision.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.position.id_for_label }}">Должность: </label>
+        {{ form.position }}
+        <div class="invalid-feedback">
+            {{ form.position.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.surname.id_for_label }}">Фамилия: </label>
+        {{ form.surname }}
+        <div class="invalid-feedback">
+            {{ form.surname.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.is_published.id_for_label }}">Опубликовано? </label>
+        {{ form.is_published }}
+        <div class="invalid-feedback">
+            {{ form.is_published.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.division.id_for_label }}">Подразделение: </label>
+        {{ form.division }}
+        <div class="invalid-feedback">
+            {{ form.division.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.military_unit.id_for_label }}">Организация: </label>
+        {{ form.military_unit }}
+        <div class="invalid-feedback">
+            {{ form.military_unit.errors }}
+        </div>
+    </div>
+    {% endcomment %}
+
+<!--    полуручной режим заполнения форм-->
+<!--    {% comment %}-->
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        <div class="invalid-feedback">
+            {{ field.errors }}
+        </div>
+    </div>
+    {% endfor %}
+<!--    {% endcomment %}-->
+
+
+    <button type="submit" class="btn btn-primary btn-block">Добавить запись</button>
+</form>
+{% endblock %}

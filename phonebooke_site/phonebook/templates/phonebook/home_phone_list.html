@@ -1,0 +1,119 @@
+<!--главная страница - основая информационная часть -->
+
+{% extends 'base.html' %}
+
+<!--считываем статические данные из папки static для загрузки шеврона-->
+{% load static %}
+
+{% block title %}
+    {{ title }} :: {{ block.super }}
+{% endblock %}
+
+<!--левый боковой навбар-->
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-12 entr card " type="1" card-id="836">
+        <div class="row details">
+            <div class="col-sm-auto">
+                <!--загрузка логотипа организации-->
+                <div class="logo">
+
+                    {# для отображения изображения #}
+
+                    <div class="media">
+                        <img src="{% static 'test_list/polotsk.png' %}">
+                        {# ниже строка не работает #}
+                        <img src="{{ phonebooks.photo.url }}" alt='' width="100">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>
+                            <span class="inline"
+                                  data-id="name">Войсковая часть 2034</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="col-sm-12"><h4><small>
+                    <span class="inline phone-alt"
+                          data-id="ph_internal">8 (01714) 300-00-00</span>
+                </small></h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <a href="mailto:mail@vch2034.gpk.by" target="_top"><i
+                            class="glyphicon glyphicon-envelope"></i></a>
+                    <span class="inline email" data-id="email">mail@vch2034.gpk.by</span> </small>
+                </h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <a href="https://vch2034.gpk.by/" target="_blank">
+                        <span class="inline url" data-id="external_url">https://vch2034.gpk.by</span></a>
+                </small></h4></div>
+                <div class="col-sm-12"><h4><small>
+                    <span class="inline" data-id="comment"></span>
+                </small></h4></div>
+            </div>
+            <div class="bottom-right row">
+                <a class="btn-report" title="Сообщение менеджеру справочника"><i
+                        class="glyphicon glyphicon-exclamation-sign"></i></a></div>
+            <!--        </div>-->
+        </div>
+    </div>
+<!--основная информационная таблица справочника-->
+<div id="dp-tab-18" class=" tab-pane active">
+    <!--указываем тип таблицы   -->
+    <table class="table table-striped">
+        <!--создаем цикл перечисления в\ч, открываем строку, записываем всю информацию-->
+
+            <!--шапка таблицы-->
+            <tr>
+        <!--в каждом столбце прописываем значения-->
+        <!--первая ячейка является ссылкой на подробную запись по пользователю-->
+        <td> Фамилия </td>
+        <!--в каждом столбце прописываем значения имя-->
+        <td> Имя </td>
+        <!--в каждом столбце прописываем значения отчество-->
+        <td> Отчество </td>
+        <!--в каждом столбце прописываем должность-->
+        <td> Должность </td>
+        <!--в каждом столбце прописываем подразделение-->
+        <td> Подразделение</td>
+        <!--в каждом столбце прописываем значения внутр телефон-->
+        <td> Внутренний </td>
+        <!--в каждом столбце прописываем значения городской телефон-->
+        <td> Городской </td>
+        <!--в каждом столбце прописываем значения факс-->
+        <td> Факс </td>
+        <!--в каждом столбце прописываем значения мобильный-->
+        <td> Мобильный </td>
+        <!--в каждом столбце прописываем значения основное подразделение-->
+        <td> Подразделение </td>
+        <!--в каждом столбце прописываем значения в.ч.-->
+        <td> в\ч </td>
+    </tr>
+
+            <!--содержимое таблицы-->
+        {% for item in phonebooks %}
+            <tr>
+                <!--в каждом столбце прописываем значения-->
+                            <td> <a href="{{item.get_absolute_url}}"> {{item.surname}} </a></td>
+                            <td> {{item.name}}</td>
+                            <td> {{item.second_name}}</td>
+                            <td> {{item.position}}</td>
+                            <td> {{item.subdivision}}</td>
+                            <td> {{item.oficial_telephone}}</td>
+                            <td> {{item.landline_telephone}}</td>
+                            <td> {{item.service_fax}}</td>
+                            <td> {{item.mobile_telephone}}</td>
+                            <td> {{item.division}}</td>
+                            <td> {{item.military_unit}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

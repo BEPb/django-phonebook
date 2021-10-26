@@ -1,0 +1,95 @@
+<!--{# загружаем пользовательский тег #}-->
+{% load phonebook_tags %}
+<!--{# используем пользовательский тег загрузки списка в\ч#}-->
+{% get_units as units %}
+
+<!--блок верхняя навигационная панель темный стиль (навбар)-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!--container-fluid создания контейнера полной ширины, занимающий 100% зоны просмотра-->
+    <div class="container-fluid">
+            <!--Первая ссылка навбара - главная страница-->
+        <a class="navbar-brand" href="{% url 'home' %}">Телефонная книга</a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% comment %}
+                    <!--активная ссылка добавить запись-->
+                    <li class="nav-item">
+                        <!--создаем ссылку каторую видят только авторизованные пользователи-->
+                        {% if request.user.is_authenticated %}
+                        <a class="nav-link active" aria-current="page" href="{% url 'add_phone' %}"><h6>Добавить запись</h6></a>
+                        {% endif %}
+                    </li>
+
+                    <!--ссылка добавить запись-->
+                    <li class="nav-item">
+                        <!--создаем ссылку каторую видят только авторизованные пользователи-->
+                        {% if request.user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'user_data' 1 %}">Создатель</a>
+                        {% endif %}
+                    </li>
+                    <!--ссылка тестовая страница-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'test_list' %}">Тестовая страница</a>
+                    </li>
+                    {% endcomment %}
+
+                    <!--выпадающее меню-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Воинская часть
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                             {% for un in units %}
+                            <li><a class="dropdown-item" href="{{un.get_absolute_url}}">{{un.title}} {{un.name_unity}}  ({{un.cnt}})</a></li>
+                            <!--  ссылка формируется через метод get_absolute_url описанного в классе Division файла models.py-->
+                            {% endfor %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">прочие организации</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <!--поисковая форма-->
+                        <form class="d-flex">
+                        <!--окно ввода-->
+                        <input class="form-control me-2"  type="search" placeholder="примеры: Иван Волков, начальник отдела, 2039" aria-label="Search" style="width: 520px; background-color: rgba(255,255,255, 1)">
+                        <!--кнопка поиска-->
+                        <button class="btn btn-outline-success" type="search">Поиск</button>
+                        <!--кнопка сброса-->
+                        <button class="btn btn-outline-success" type="reset">Сброс</button>
+                    </li>
+
+<!--                    &lt;!&ndash;не активная ссылка&ndash;&gt;-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Не активно</a>-->
+<!--                    </li>-->
+                </ul>
+
+
+
+                    <span class="navbar-text">
+                        <!--кнопка Отправить сообщение-->
+                        <button class="btn btn-outline-success" src="{% url 'mail' %}" type="mail">Отправить сообщение</button>
+                        <!--если пользователь авторизован-->
+                        {% if request.user.is_authenticated %}
+                        Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}">Выход</a>
+                        {% else %}
+                        <!--если пользователь не авторизован-->
+                        <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Вход</a>
+                        {% endif %}
+                    </span>
+                </form>
+            </div>
+        </div>
+</nav>
