@@ -1,8 +1,10 @@
 <!--страница отображения всех организаций (воинских частей)-->
 {% extends 'base.html' %}
 
+{# Использовать пользовательские теги #}
 {% load phonebook_tags %}
 
+{# Описываем тайтл #}
 {% block title %}
     {{ title }} :: {{ block.super }}
 {% endblock %}
@@ -16,18 +18,16 @@
 <!--запускаем пользовательский тег show_divisions, каторый данные загружает уже со страницы 'phonebook/list_divisions.html'-->
 {# Шапка записи #}
 <div class="col-sm-12 entr card " type="1" card-id="836">
-        <div class="row details">
 
-            <div class="col-sm-auto">
-                <div class="row">
+    {# Шапка записи #}
+    <div class="row">
                     <div class="col-sm-12">
                         <h2>
                             <span class="inline"
-                                  data-id="name">Страница части </span>
+                                  data-id="name">Страница части  ({{ .units }})  </span>
                         </h2>
                     </div>
                 </div>
-
 
 
 {# Данные записи #}
@@ -83,5 +83,6 @@
     </tr>
 {% endfor %}
     </table>
+
 </div>
 {% endblock %}
