@@ -17,50 +17,18 @@
 {# Шапка записи #}
 <div class="col-sm-12 entr card " type="1" card-id="836">
         <div class="row details">
-            <div class="col-sm-auto">
-                <!--загрузка логотипа организации-->
-                <div class="logo">
 
-                    {# для отображения изображения создаем цикл для обращения к массиву line#}
-                    {% for item in line %}
-                    <div class="media">
-                        <img src="{{ item.photo.url }}" alt='' width="100">
-                    </div>
-                        {% endfor %}
-                </div>
-            </div>
             <div class="col-sm-auto">
                 <div class="row">
                     <div class="col-sm-12">
                         <h2>
                             <span class="inline"
-                                  data-id="name">Войсковая часть 2034</span>
+                                  data-id="name">Страница части </span>
                         </h2>
                     </div>
                 </div>
 
-                <div class="col-sm-12"><h4><small>
-                    <span class="inline phone-alt"
-                          data-id="ph_internal">8 (01714) 300-00-00</span>
-                </small></h4></div>
-                <div class="col-sm-12"><h4><small>
-                    <a href="mailto:mail@vch2034.gpk.by" target="_top"><i
-                            class="glyphicon glyphicon-envelope"></i></a>
-                    <span class="inline email" data-id="email">mail@vch2034.gpk.by</span> </small>
-                </h4></div>
-                <div class="col-sm-12"><h4><small>
-                    <a href="https://vch2034.gpk.by/" target="_blank">
-                        <span class="inline url" data-id="external_url">https://vch2034.gpk.by</span></a>
-                </small></h4></div>
-                <div class="col-sm-12"><h4><small>
-                    <span class="inline" data-id="comment"></span>
-                </small></h4></div>
-            </div>
-            <div class="bottom-right row">
-                <a class="btn-report" title="Сообщение менеджеру справочника"><i
-                        class="glyphicon glyphicon-exclamation-sign"></i></a></div>
-        </div>
-    </div>
+
 
 {# Данные записи #}
 <div id="dp-tab-18" class=" tab-pane active">
@@ -68,7 +36,35 @@
     <table class="table table-striped">
         <!--создаем цикл перечисления в\ч, открываем строку, записываем всю информацию-->
                      <!--задаем цикл перечисления записей-->
+            <!--шапка таблицы-->
+            <tr>
+        <!--в каждом столбце прописываем значения-->
+        <!--первая ячейка является ссылкой на подробную запись по пользователю-->
+        <td> Фамилия </td>
+        <!--в каждом столбце прописываем значения имя-->
+        <td> Имя </td>
+        <!--в каждом столбце прописываем значения отчество-->
+        <td> Отчество </td>
+        <!--в каждом столбце прописываем должность-->
+        <td> Должность </td>
+        <!--в каждом столбце прописываем подразделение-->
+        <td> Подразделение</td>
+        <!--в каждом столбце прописываем значения внутр телефон-->
+        <td> Внутренний </td>
+        <!--в каждом столбце прописываем значения городской телефон-->
+        <td> Городской </td>
+        <!--в каждом столбце прописываем значения факс-->
+        <td> Факс </td>
+        <!--в каждом столбце прописываем значения мобильный-->
+        <td> Мобильный </td>
+        <!--в каждом столбце прописываем значения основное подразделение-->
+        <td> Подразделение </td>
+        <!--в каждом столбце прописываем значения в.ч.-->
+        <td> в\ч </td>
+    </tr>
+            <!--содержимое таблицы-->
 
+                <!--создаем цикл перечисления, открываем строку, записываем всю информацию-->
 {% for item in phonebooks %}
     <!--открываем строку-->
     <tr>

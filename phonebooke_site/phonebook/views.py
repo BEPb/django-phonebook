@@ -45,7 +45,7 @@ class HomePhones(MyMixin, ListView):  # наследуем атрибуты от
 # создадить класс-обработчик страницы данных за в\ч (переопределяем атрибуты класса ListView)
 class PhonesByMilitary(ListView): # наследуем атрибуты от класса ListView
     model = MilitaryUnit  # привязываем к модели
-    template_name = 'phonebook/home_phone_list.html'  # указываем путь размещения нашего шаблона
+    template_name = 'phonebook/mil_unit.html'  # указываем путь размещения нашего шаблона
     context_object_name = 'phonebooks'  # указываем имя передаваемого листа объектов
     allow_empty = False  # пустые списки - ошибка 404 (также защищает от 500 ошибки сервера)
     paginate_by = 5  # указываем по сколько записей на странице должно быть

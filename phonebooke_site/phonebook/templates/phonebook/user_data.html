@@ -1,6 +1,10 @@
 <!--страница отображения данных о одной записи-->
 {% extends 'base.html' %}
 
+<!--считываем статические данные из папки static для загрузки фото по умолчанию-->
+{% load static %}
+
+
 {% block title %}
     {{ title }} :: {{ block.super }}
 {% endblock %}
@@ -12,53 +16,6 @@
 
 {% block content %}
 
-{# Шапка записи #}
-<div class="col-sm-12 entr card " type="1" card-id="836">
-        <div class="row details">
-            <div class="col-sm-auto">
-                <!--загрузка логотипа организации-->
-                <div class="logo">
-
-                    {# для отображения изображения создаем цикл для обращения к массиву line#}
-                    {% for item in line %}
-                    <div class="media">
-                        <img src="{{ item.photo.url }}" alt='' width="100">
-                    </div>
-                        {% endfor %}
-                </div>
-            </div>
-            <div class="col-sm-auto">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h2>
-                            <span class="inline"
-                                  data-id="name">Войсковая часть 2034</span>
-                        </h2>
-                    </div>
-                </div>
-
-                <div class="col-sm-12"><h4><small>
-                    <span class="inline phone-alt"
-                          data-id="ph_internal">8 (01714) 300-00-00</span>
-                </small></h4></div>
-                <div class="col-sm-12"><h4><small>
-                    <a href="mailto:mail@vch2034.gpk.by" target="_top"><i
-                            class="glyphicon glyphicon-envelope"></i></a>
-                    <span class="inline email" data-id="email">mail@vch2034.gpk.by</span> </small>
-                </h4></div>
-                <div class="col-sm-12"><h4><small>
-                    <a href="https://vch2034.gpk.by/" target="_blank">
-                        <span class="inline url" data-id="external_url">https://vch2034.gpk.by</span></a>
-                </small></h4></div>
-                <div class="col-sm-12"><h4><small>
-                    <span class="inline" data-id="comment"></span>
-                </small></h4></div>
-            </div>
-            <div class="bottom-right row">
-                <a class="btn-report" title="Сообщение менеджеру справочника"><i
-                        class="glyphicon glyphicon-exclamation-sign"></i></a></div>
-        </div>
-    </div>
 
 {# Данные записи #}
 <div id="dp-tab-18" class=" tab-pane active">
@@ -67,10 +24,15 @@
         Подразделение: <a href="{{ phone_item.division.get_absolute_url }}">{{ phone_item.division }}</a>
     </div>
     <div class="card-body">
-        {% if item.photo %}
-        <img src="{{ phone_item.photo.url }}" alt="" width="350" class="float-left mr-3">
+        {# Фото записи #}
+        {# Если фото записи есть то отобразить его #}
+        {% if phone_item.photo %}
+        <img src="{{ phone_item.photo.url }}" alt="" width="150" class="float-left mr-3">
         {% else %}
-        <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="float-left mr-3">
+        {# Если фото записи нет, то отобразить фото по умолчанию из статики#}
+<!--        <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="float-left mr-3">-->
+<!--        <img src="{% static 'test_list/polotsk.png' %}">-->
+        <img src="{% static 'test_list/noimage.png' %} ">
         {% endif %}
 
         <h6 class="card-title">Войсковая часть {{ phone_item.military_unit }} ({{ phone_item.military_unit.name_unity }})</h6>

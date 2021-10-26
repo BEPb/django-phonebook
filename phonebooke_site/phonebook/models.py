@@ -7,6 +7,7 @@ from django.urls import reverse_lazy  # импортируем модуль по
 class Phonenumber(models.Model):
     # прописываем содержание базы данных
     # id - создается по умолчанию
+    objects = None
     subdivision = models.CharField(max_length=150, verbose_name='подотдел', blank=True)  # поле "подотдел", максимальная длинна 150 символов
     position = models.CharField(max_length=150, verbose_name='должность')  # поле "должность", максимальная длинна 150 символов
     surname = models.CharField(max_length=50, verbose_name="фамилия")  # поле "фамилия", максимальная длинна 50 символов
@@ -57,6 +58,7 @@ class Phonenumber(models.Model):
 
 # создаем модель воинские части (таблицу в БД)
 class MilitaryUnit(models.Model):  # создаем специфичиский класс к полю отношений "воински части"
+    objects = None
     title = models.CharField(max_length=7, db_index=True, verbose_name='№ в\ч')
     name_unity = models.CharField(max_length=150, db_index=True, null=True, verbose_name='Наименование в\ч')
 
@@ -78,6 +80,7 @@ class MilitaryUnit(models.Model):  # создаем специфичиский �
 
 # создаем модель подразделения (таблицу в БД)
 class Division(models.Model):  # создаем специфичиский класс к полю отношений "подразделение"
+    objects = None
     title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование подразделения')
 
     def get_absolute_url(self):  # метод обработки абсолютных адресов (автоматического построения ссылки)
