@@ -54,3 +54,36 @@ ____
 - login, logout - модуль логирования и выхода
 - send_mail - модуль отправки сообщений
 - Count, F - модуль подсчета значений и фильтрации 
+
+
+Setup the application
+Make sure you've Python and PIP installed in your local computer.
+
+Clone the repository
+$ git clone https://github.com/xarala221/django-phonebook.git
+$ cd django-phonebook
+Install dependencies
+$ pip install -r requirements.txt / pipenv install
+Run the application locally
+$ python manage.py runserver
+Open your browser and verify http://localhost:8000/
+
+### Clone the repository
+ 
+```sh
+$ git clone https://github.com/BEPb/first.git
+$ cd django-phonebook
+```
+ 
+### Install dependencies
+```sh
+$ pip install -r requirements.txt / pipenv install
+```
+ 
+### Run the application locally
+ 
+```sh
+$ python manage.py runserver
+```
+Open your browser and verify http://localhost:8000/
+ 
