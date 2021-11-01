@@ -1,3 +1,12 @@
+![Profile views](https://gpvc.arturio.dev/BEPb) 
+![GitHub top language](https://img.shields.io/github/languages/top/BEPb/django-phonebook) 
+![GitHub language count](https://img.shields.io/github/languages/count/BEPb/django-phonebook)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BEPb/django-phonebook)
+![GitHub repo size](https://img.shields.io/github/repo-size/BEPb/django-phonebook) 
+![GitHub](https://img.shields.io/github/license/BEPb/django-phonebook) 
+![GitHub last commit](https://img.shields.io/github/last-commit/BEPb/django-phonebook)
+
+![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
 ## Сайт телефонный корпоративный справочник
 
 ____
