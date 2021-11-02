@@ -82,6 +82,7 @@ class Division(models.Model):  # создаем специфичиский кл�
     objects = None
     title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование подразделения')
 
+
     def get_absolute_url(self):  # метод обработки абсолютных адресов (автоматического построения ссылки)
         return reverse_lazy('division', kwargs={"div_id": self.pk})
         # 'division' - имя страницы (urls)

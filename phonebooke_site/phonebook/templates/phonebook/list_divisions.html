@@ -19,20 +19,24 @@
     {% endfor %}
   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 </nav>
+
 {% endcomment %}
 
+
+<!--  отображение произвольной перменной mil_id из пользовательского тега show_divisions() в phonebook_tags.py-->
+
 <div class="list-group">
-{#- Перечисление всех подразделений -#}
+{#- Перечисление всех подразделений, список divisions - сформирован пользовательским тегом show_divisions() в phonebook_tags.py -#}
 {% for di in divisions %}
 
   <!--  отображение списка подразделений через прямого обращение к номеру записи в базе данных -->
   <!--  ссылка формируется через метод get_absolute_url описанного в классе Division файла models.py-->
-
-  <a href="{{ di.get_absolute_url }}" class="list-group-item list-group-item-action">
+  <a href="{{ di.get_absolute_url }}" class="list-group-item list-group-item-action" name="orderby" >
+      <!--   di.title - обращение к имени подразделения, di.cnt - подсчет записи в этом подразделении-->
     {{ di.title }}     ({{ di.cnt }})
   </a>
 <!--  <span class="badge badge-pill badge-primary ">{{ di.title }} {{ di.cnt }}</span>-->
 
-
 {% endfor %}
+
 </div>

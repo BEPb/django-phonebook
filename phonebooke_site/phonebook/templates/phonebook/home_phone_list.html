@@ -1,10 +1,10 @@
 <!--главная страница - основая информационная часть -->
-
 {% extends 'base.html' %}
 
 <!--считываем статические данные из папки static для загрузки шеврона-->
 {% load static %}
 
+<!--вставляем блок title-->
 {% block title %}
     {{ title }} :: {{ block.super }}
 {% endblock %}
@@ -14,15 +14,15 @@
 {% include 'inc/_sidebar.html' %}
 {% endblock %}
 
+<!--блок контента-->
 {% block content %}
+<!--блок над таблицей-->
 <div class="col-sm-12 entr card " type="1" card-id="836">
         <div class="row details">
             <div class="col-sm-auto">
                 <!--загрузка логотипа организации-->
                 <div class="logo">
-
                     {# для отображения изображения #}
-
                     <div class="media">
                         <img src="{% static 'test_list/polotsk.png' %}">
                         {# ниже строка не работает #}
@@ -36,7 +36,7 @@
                     <div class="col-sm-12">
                         <h2>
                             <span class="inline"
-                                  data-id="name">Домашняя страница Войсковая часть 2034</span>
+                                  data-id="name">Домашняя страница</span>
                         </h2>
                     </div>
                 </div>
@@ -69,8 +69,6 @@
 <div id="dp-tab-18" class=" tab-pane active">
     <!--указываем тип таблицы   -->
     <table class="table table-striped">
-
-
             <!--шапка таблицы-->
             <tr>
         <!--в каждом столбце прописываем значения-->
@@ -98,8 +96,7 @@
         <td> в\ч </td>
     </tr>
             <!--содержимое таблицы-->
-
-                <!--создаем цикл перечисления, открываем строку, записываем всю информацию-->
+            <!--создаем цикл перечисления, открываем строку, записываем всю информацию-->
         {% for item in phonebooks %}
             <tr>
                 <!--в каждом столбце прописываем значения-->
@@ -113,9 +110,18 @@
                             <td> {{item.service_fax}}</td>
                             <td> {{item.mobile_telephone}}</td>
                             <td> {{item.division}}</td>
-                            <td> {{item.military_unit}}</td>
+                            <td> {{item.military_unit}} {{name}}</td>
             </tr>
         {% endfor %}
     </table>
+                            {% for un in units %}
+                            <li>
+                                <a class="dropdown-item" href="{{un.get_absolute_url}}">
+                                    <small>{{un.title}} {{un.name_unity}} ({{un.cnt}})</small>
+                                </a>
+                            </li>
+                            <!--  ссылка формируется через метод get_absolute_url описанного в классе Division файла models.py-->
+                            {% endfor %}
 </div>
+
 {% endblock %}
