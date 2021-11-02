@@ -10,15 +10,17 @@ urlpatterns = [
     # path('', index, name='home'),  # при запросе в браузере пустрой строки отображается страница index
     # path('index/', index, name='home'),  # страница index (работа через функцию index)
     # path('', HomePhones.as_view(), name='home'),  # страница index работа через класс HomePhones (не кешированный)
-    path('', cache_page(60)(HomePhones.as_view()), name='home'),  # страница index работа через класс HomePhones (кешированный)
-    # path('index/', HomePhones.as_view(), name='home'),  # страница index работа через класс HomePhones (не кешированный)
-    path('index/', cache_page(60)(HomePhones.as_view()), name='home'),  # страница index работа через класс HomePhones (кешированный)
+    path('', cache_page(60)(HomePhones.as_view()), name='home'),  # страница 127.0.0.1/ работа через класс HomePhones (кешированный)
+    path('index/', HomePhones.as_view(), name='home'),  # страница index работа через класс HomePhones (не кешированный)
+    # path('index/', cache_page(60)(HomePhones.as_view()), name='home'),  # страница index работа через класс HomePhones (кешированный)
     # 60 секунд время на которое осуществляется обновление кеша
+    path('list_mil/', HomeMilytary.as_view(), name='mils'),  # страница mil работа через класс HomeMilytary
 
     path('test_list/', test_list, name='test_list'),  # при запросе в браузере test_list отображается страница test_list
     # path('test/', test, name='test'),  # при запросе в браузере test отображается страница test
 
     # path('div/<int:div_id>/', division, name='division'),  # страница division, через функцию divisiion (views)
+    # path('div/<int:div_id>/', PhonesByDivision.as_view(), name='division'),  # страница division, через класс  PhonesByDivision (views)
     path('div/<int:div_id>/', PhonesByDivision.as_view(), name='division'),  # страница division, через класс  PhonesByDivision (views)
 
     # path('mil/<int:mil_id>/', mil_unit, name='mil_unit'),  # страница mil_unit, через функцию mil_unit (views)

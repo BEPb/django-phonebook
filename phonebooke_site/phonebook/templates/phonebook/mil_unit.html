@@ -24,8 +24,20 @@
                     <div class="col-sm-12">
                         <h2>
                             <span class="inline"
-                                  data-id="name">Страница части  ({{ .units }})  </span>
+                                  data-id="name">Страница войсковой части  {{ military_units.0.military_unit }}  </span>
                         </h2>
+                        <h6>
+                            <span class="inline"
+                                  data-id="name">Всего учтенных главных отделов  ({{ number_dev }})  </span>
+                        </h6>
+                        <h6>
+                            <span class="inline"
+                                  data-id="name">В каждом отделе  ({{ devi_nub }})  </span>
+                        </h6>
+                        <h6>
+                            <span class="inline"
+                                  data-id="name">Всего учтенных должностных лиц  ({{ number_ab }})  </span>
+                        </h6>
                     </div>
                 </div>
 
@@ -65,7 +77,7 @@
             <!--содержимое таблицы-->
 
                 <!--создаем цикл перечисления, открываем строку, записываем всю информацию-->
-{% for item in phonebooks %}
+{% for item in military_units %}
     <!--открываем строку-->
     <tr>
         <!--в каждом столбце прописываем значения-->

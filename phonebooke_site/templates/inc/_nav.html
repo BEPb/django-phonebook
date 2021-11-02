@@ -8,9 +8,7 @@
     <!--container-fluid создания контейнера полной ширины, занимающий 100% зоны просмотра-->
     <div class="container-fluid">
             <!--Первая ссылка навбара - главная страница-->
-        <a class="navbar-brand" href="{% url 'home' %}">Телефонная книга</a>
-
-
+        <a class="navbar-brand" href="{% url 'home' %}"> <small> Телефонная книга </small></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,42 +18,48 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% comment %}
+
                     <!--активная ссылка добавить запись-->
                     <li class="nav-item">
                         <!--создаем ссылку каторую видят только авторизованные пользователи-->
                         {% if request.user.is_authenticated %}
-                        <a class="nav-link active" aria-current="page" href="{% url 'add_phone' %}"><h6>Добавить запись</h6></a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'add_phone' %}"><small>Добавить запись</small></a>
                         {% endif %}
                     </li>
-
-                    <!--ссылка добавить запись-->
+                    <!--ссылка создатель-->
                     <li class="nav-item">
                         <!--создаем ссылку каторую видят только авторизованные пользователи-->
                         {% if request.user.is_authenticated %}
-                        <a class="nav-link" href="{% url 'user_data' 1 %}">Создатель</a>
+                        <a class="nav-link" href="{% url 'user_data' 1 %}"><small>Создатель</small></a>
                         {% endif %}
                     </li>
                     <!--ссылка тестовая страница-->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'test_list' %}">Тестовая страница</a>
+                        <a class="nav-link" href="{% url 'test_list' %}"><small>Тест</small></a>
                     </li>
+                    <!--ссылка тестовая страница-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mils' %}"><small>Все в\ч</small></a>
+                    </li>
+                    <!--создатель и тестовая страница НЕ ОТОБРАЖАТЬ-->
+                    {% comment %}
                     {% endcomment %}
 
                     <!--выпадающее меню-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Воинская часть
+                            <small>Воинская часть</small>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                              {% for un in units %}
-                            <li><a class="dropdown-item" href="{{un.get_absolute_url}}">{{un.title}} {{un.name_unity}}  ({{un.cnt}})</a></li>
+                            <li><a class="dropdown-item" href="{{un.get_absolute_url}}"><small>{{un.title}} {{un.name_unity}} ({{un.cnt}})</small></a></li>
                             <!--  ссылка формируется через метод get_absolute_url описанного в классе Division файла models.py-->
                             {% endfor %}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">прочие организации</a></li>
+                            <li><a class="dropdown-item" href="#"><small>прочие организации</small></a></li>
                         </ul>
                     </li>
 
@@ -65,9 +69,9 @@
                         <!--окно ввода-->
                         <input class="form-control me-2"  type="search" placeholder="примеры: Иван Волков, начальник отдела, 2039" aria-label="Search" style="width: 520px; background-color: rgba(255,255,255, 1)">
                         <!--кнопка поиска-->
-                        <button class="btn btn-outline-success" type="search">Поиск</button>
+                        <button class="btn btn-outline-success" type="search"><small>Поиск</small></button>
                         <!--кнопка сброса-->
-                        <button class="btn btn-outline-success" type="reset">Сброс</button>
+                        <button class="btn btn-outline-success" type="reset"><small>Сброс</small></button>
                     </li>
 
 <!--                    &lt;!&ndash;не активная ссылка&ndash;&gt;-->
@@ -77,16 +81,18 @@
                 </ul>
 
 
-
                     <span class="navbar-text">
+                        <!--кнопка Отправить сообщение НЕ ОТОБРАЖАТЬ-->
+                        {% comment %}
                         <!--кнопка Отправить сообщение-->
-                        <button class="btn btn-outline-success" src="{% url 'mail' %}" type="mail">Отправить сообщение</button>
+                        <button class="btn btn-outline-success" src="{% url 'mail' %}" type="mail"><small>Отправить сообщение</small></button>
+                        {% endcomment %}
                         <!--если пользователь авторизован-->
                         {% if request.user.is_authenticated %}
-                        Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}">Выход</a>
+                        <small> Добро пожаловать, {{ user.username }}</small> | <a href="{% url 'logout' %}"><small>Выход</small></a>
                         {% else %}
                         <!--если пользователь не авторизован-->
-                        <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Вход</a>
+                        <a href="{% url 'register' %}"><small>Регистрация</small></a> | <a href="{% url 'login' %}"><small>Вход</small></a>
                         {% endif %}
                     </span>
                 </form>
