@@ -21,7 +21,8 @@ urlpatterns = [
 
     # path('div/<int:div_id>/', division, name='division'),  # страница division, через функцию divisiion (views)
     # path('div/<int:div_id>/', PhonesByDivision.as_view(), name='division'),  # страница division, через класс  PhonesByDivision (views)
-    path('div/<int:div_id>/', PhonesByDivision.as_view(), name='division'),  # страница division, через класс  PhonesByDivision (views)
+    # path('div/<int:div_id>/', PhonesByDivision.as_view(), name='division'),  # страница division, через класс  PhonesByDivision (views)
+    path('mil/<int:mil_id>/div/<int:div_id>/', PhonesByDivision.as_view(), name='division'),  # страница division, через класс  PhonesByDivision (views)
 
     # path('mil/<int:mil_id>/', mil_unit, name='mil_unit'),  # страница mil_unit, через функцию mil_unit (views)
     path('mil/<int:mil_id>/', PhonesByMilitary.as_view(), name='mil_unit'),  # страница mil_unit, через класс  PhonesByMilitary (views)

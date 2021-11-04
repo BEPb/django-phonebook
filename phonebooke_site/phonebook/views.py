@@ -7,7 +7,7 @@ from django.http import HttpResponse  # работа с ответами
 from .models import Phonenumber, Division, MilitaryUnit  # из текущей дирректории, файла models импортируем класс Phonenumber, Division, MilitaryUnit
 from .forms import PhoneForm, UserRegisterForm, UserLoginForm, ContactForm  # импортируем модуль заполнения наших форм из .forms
 from django.views.generic import ListView, DetailView, CreateView
-from django.db.models import Count, F  # импорт модуля подсчета значений и фильтрации
+from django.db.models import Count, F, Avg  # импорт модуля подсчета (Cont) значений, фильтрации (F), среднее значение (Avg)
 # импортируем модуль ListView - просмотра общих данных страницы,
 # DetailView - просмотра детальных данных одной записи
 # CreateView - создание записи
@@ -55,14 +55,76 @@ class PhonesByMilitary(ListView):  # наследуем атрибуты от к
     # функция для создания контекста, передаваемого в загружаемую страницу
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)  # получаем значения указанные в ключе ссылки
-        context['title'] = MilitaryUnit.objects.get(pk=self.kwargs['mil_id'])  # подписываем тайтл именем части, по mil_id - параметра запроса в urls
-        context['devi_nub'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division').annotate(the_division=Count('division'))  # выводит сколько и каких подразделений имеется в этой воинской части
-        context['number_dev'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division').annotate(the_division=Count('division')).count  # сколько всего отделов в этой воинской части
+
+        # Аннотация annotate() и агрегация aggregate()
+        # all() - все значения
+        # none() - пустой список
+        # select_related() - формирует связанную выборку тем самым уменьшаем колличество запросов SQL за счет "жадных" запросов
+        # defer("name", "surname") - не выбирать данные из указанных полей
+        # only('name') - оставляет только те поля которые необходимы при формировании выборки
+        # get(id=1) - обращается к объекту с id = 1
+        # count() - сумма объектов
+        # latest('name') - последний объект по полю имя
+        #
+        # annotate() - добовляет каждому значению выборки свое значение (среднее, сумму,....)
+        # aggregate() - возвращает словарь (среднее, сумму,....)
+        # order_by('the_division') - обращение и упорядочивание по новому параметру в т.ч. и временной переменной 'the_division'
+        # reverse() - порядок сортировки меняется на обратный
+        # values('division') - формирует список словарей с ключом division и значением
+        # values_list('surname') - формирует кортеж по полю фамилия
+        # distinct() - убрать дубли (повторяющееся записи)
+        # filter() - фильрует выборку по параметру по которому данные остаются в выборке
+        # exclude() - фильрует выборку по параметру по которому данные исключаются из выборки
+
+        # Параметры фильтрации        #
+        # get(id__exact=14) - где exact, точное совпадение
+        # get(id__iexact=14) - где iexact, точное совпадение не учитывающее регистр
+        # get(id__in=[14, 15, 16]) - где in, проверяет вхождения по значениям
+        # get(id__gt=4) - где gt, проверяет значения больше 4
+        # get(id__gte=4) - где gte, проверяет значения больше или равно 4
+        # get(id__lt=4) - где lt, проверяет значения меньше 4
+        # get(id__lte=4) - где lte, проверяет значения меньше или равно 4
+        # filter(id__startswith='will') - где startswith, проверяет начинаются ли значения словом 'will
+        # filter(id__istartswith='will') - где istartswith, проверяет начинаются ли значения словом 'will' без учета регистра
+        # filter(id__endtswith='will') - где endtswith, проверяет кончаются ли значения словом 'will'
+        # filter(id__iendswith='will') - где iendswith, проверяет кончаются ли значения словом 'will' без учета регистра
+        # filter(id__range=(start, end) - где range, проверяет находятся ли значения в указанном диапазоне
+
+        # Функции агрегации
+        # Avg() - среднее значение
+        # Count() - количество объектов
+        # Max() - максимальное значение
+        # Min() - минимальное значение
+        # StdDev() - стандартное отклонение
+        # Sum() - сумма всех значений
+        # Variance() - возвращает дисперсию значений в указанное поле       #
+
+
+        # context['devi_nub'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division').annotate(the_division=Count('surname'))
+        # выводит список только тех подразделений где имеется персонал в этой воинской части по одному абоненту
+        # context['dev_test'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division')
+        # выводит список отделов где есть личный состав по порядку создания записи абонента
+        # context['dev_test'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division')
+        # выводит список подразделений где имеется персонал в этой воинской части по одному абоненту в порядке возрастания № отдела
+        # context['dev_test'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values_list('surname')
+        # выводит список фамилий этой воинской части в порядке создания записи
+        # context['dev_test'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values_list('division')
+        # выводит список только номеров подразделений этой воинской части в порядке создания записи абонента
+        # context['dev_test'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division').annotate(the_division=Count('oficial_telephone')).order_by('the_division')
+        # получили список словарей подразделений и количества абонентов в них в порядке возрастания количества абонентов
+
+        context['title'] = MilitaryUnit.objects.get(pk=self.kwargs['mil_id'])
+        # подписываем тайтл именем части, по mil_id - параметра запроса в urls
+        context['number_dev'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).values('division').annotate(the_division=Count('division')).count
+        # сколько всего уникальных отделов в этой воинской части
         context['number_ab'] = Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).count
+        # сумма всех абонентов части
+
         return context  # непосредственно передает словарь на страницу
 
     def get_queryset(self):  # функция (метод) - фильтр по опубликованным данным
-        return Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).select_related('division', 'military_unit')
+        # return Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).select_related('division', 'military_unit')
+        return Phonenumber.objects.filter(military_unit_id=self.kwargs['mil_id'], is_published=True).order_by('division')
         # return - передает отфильтрованные значения модели Phonenumber
         # military_unit_id -  по ключу заложенного в адресе (URLS) = 'mil_id'
         # is_published=True -  по опубликованным записям
@@ -91,7 +153,7 @@ class HomeMilytary(MyMixin, ListView):  # наследуем атрибуты о
 
 # класс-обработчик страницы данных за подразделение (переопределяем атрибуты класса ListView)
 class PhonesByDivision(ListView):  # наследуем атрибуты от класса ListView
-    model = Division  # привязываем к модели
+    model = Division  # привязываем к модели из которой будут браться записи для вывода
     template_name = 'phonebook/home_phone_list.html'  # указываем путь размещения нашего шаблона
     context_object_name = 'phonebooks'  # указываем имя передаваемого листа объектов
     allow_empty = False  # пустые списки - ошибка 404 (также защищает от 500 ошибки сервера)
@@ -101,13 +163,14 @@ class PhonesByDivision(ListView):  # наследуем атрибуты от к
     # функция для создания контекста, передаваемого в загружаемую страницу (для заполнения словаря для использования в качестве контекста шаблона)
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)  # переопределяем контекст, получаем значения указанные в ключе ссылки
+        context['pref_url'] = self.request.GET.get('pref')  # получаем параметр url предыдущей страницы
         # context['mil_id'] = Division.objects.get(pk=self.kwargs['2'])  # дополняем контекст тайтлом, div_id - параметра запроса в urls
         context['title'] = Division.objects.get(pk=self.kwargs['div_id'])  # подписываем тайтл именем части, по div_id - параметра запроса в urls
         return context  # непосредственно передает словарь на страницу
 
     def get_queryset(self):  # функция (метод) - фильтр по опубликованным данным, определяет список объектов, которые вы хотите отобразить
         # return Phonenumber.objects.filter(division_id=self.kwargs['div_id'], is_published=True).select_related('division', 'military_unit')
-        return Phonenumber.objects.filter(division_id=self.kwargs['div_id'], is_published=True).select_related('division', 'military_unit')
+        return Phonenumber.objects.filter(division_id=self.kwargs['div_id'], is_published=True).filter(military_unit_id=self.kwargs['mil_id'], is_published=True).select_related('division', 'military_unit')
         # return - передает отфильтрованные значения модели Phonenumber
         # division_id -  по ключу заложенного в адресе (URLS) = 'div_id'
         # is_published=True -  по опубликованным записям

@@ -32,10 +32,6 @@
                         </h6>
                         <h6>
                             <span class="inline"
-                                  data-id="name">В каждом отделе  ({{ devi_nub }})  </span>
-                        </h6>
-                        <h6>
-                            <span class="inline"
                                   data-id="name">Всего учтенных должностных лиц  ({{ number_ab }})  </span>
                         </h6>
                     </div>
@@ -75,25 +71,24 @@
         <td> в\ч </td>
     </tr>
             <!--содержимое таблицы-->
-
-                <!--создаем цикл перечисления, открываем строку, записываем всю информацию-->
-{% for item in military_units %}
-    <!--открываем строку-->
-    <tr>
-        <!--в каждом столбце прописываем значения-->
-        <td> <a href="{{item.get_absolute_url}}"> {{item.surname}} </a></td>
-        <td> {{item.name}}</td>
-        <td> {{item.second_name}}</td>
-        <td> {{item.position}}</td>
-        <td> {{item.subdivision}}</td>
-        <td> {{item.oficial_telephone}}</td>
-        <td> {{item.landline_telephone}}</td>
-        <td> {{item.service_fax}}</td>
-        <td> {{item.mobile_telephone}}</td>
-        <td> {{item.division}}</td>
-        <td> {{item.military_unit}}</td>
-    </tr>
-{% endfor %}
+            <!--создаем цикл перечисления, открываем строку, записываем всю информацию-->
+            {% for item in military_units %}
+                <!--открываем строку-->
+                <tr>
+                    <!--в каждом столбце прописываем значения-->
+                    <td> <a href="{{item.get_absolute_url}}"> {{item.surname}} </a></td>
+                    <td> {{item.name}}</td>
+                    <td> {{item.second_name}}</td>
+                    <td> {{item.position}}</td>
+                    <td> {{item.subdivision}}</td>
+                    <td> {{item.oficial_telephone}}</td>
+                    <td> {{item.landline_telephone}}</td>
+                    <td> {{item.service_fax}}</td>
+                    <td> {{item.mobile_telephone}}</td>
+                    <td> {{item.division}}</td>
+                    <td> {{item.military_unit}}</td>
+                </tr>
+            {% endfor %}
     </table>
 
 </div>
